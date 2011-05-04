@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyright 2008–2010 California Institute of Technology. ALL RIGHTS
+RESERVED. U.S. Government Sponsorship acknowledged.
+-->
+<configure
+    xmlns='http://namespaces.zope.org/zope'
+    xmlns:five='http://namespaces.zope.org/five'
+    xmlns:genericsetup='http://namespaces.zope.org/genericsetup'
+    xmlns:zcml='http://namespaces.zope.org/zcml'
+    i18n_domain='eke.site'>
+
+    <five:registerPackage package="." initialize=".initialize" />
+    <include package='eea.facetednavigation' file='meta.zcml'/>
+    <include package='eea.facetednavigation' file='overrides.zcml'/>
+    <include package='eea.facetednavigation' />
+    <include package='p4a.subtyper' />
+    <include package='.browser'/>
+    <include package='.content'/>
+    <include package='.subtypes'/>
+    <genericsetup:registerProfile 
+        name='default'
+        title='EKE: Sites'
+        directory='profiles/default'
+        description='Participating sites of the EDRN Knowledge Environment.'
+        provides='Products.GenericSetup.interfaces.EXTENSION'
+    />
+    <include
+        zcml:condition='installed Products.GenericSetup.upgrade'
+        file='upgrades.zcml'
+    />
+</configure>

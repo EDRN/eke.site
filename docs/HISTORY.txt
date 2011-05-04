@@ -1,0 +1,122 @@
+Changelog
+=========
+
+A retrospective of the various releases this component has had, what's been
+changed, what's been fixed, and so forth, follows.  You can find out more
+about the issue numbers listed below by visiting the project's issue tracker
+at https://oodt.jpl.nasa.gov/jira/browse/CA.
+
+
+1.1.0 - Plone 4
+---------------
+
+This release makes eke.site compatible with Plone 4.
+
+
+1.0.4 - Context Sensitive People
+--------------------------------
+
+The two issues addressed in this release are:
+
+* CA-725 - Vocabularies eke.site.People and eke.site.PeopleWithNoReference are
+  context-dependent
+* CA-728 - Remove "Other Misc.  Sites" category from Sites and show each
+  category in list at top of page
+
+
+1.0.3 - Organsmic Organ Sites
+-----------------------------
+
+* CA-680 - Change Clinical Validation Center to Clinical Validation Centers
+  (plural)
+* CA-691 - Allow BDLs to have multiple organ sites
+* CA-693 - Members List - Collapse all Associate Members Bs and Cs into single
+  B and C groups
+* CA-694 - Associate Members A showing 0 members
+* CA-695 - Add Informatics Center to list of anointed sites
+* CA-697 - Change Member Type Header SPORE to SPOREs on Sites and Member List
+
+
+1.0.2 - Reorganization
+----------------------
+
+There's some new arrangement of EDRN member sites, so this release tackled
+these two issues:
+
+* CA-667 - Reorganize BDLs and CVCs
+* CA-670 - Collapse all Type C's and Type B's EDRN Sites into a single Type C
+  and Type B section respectively
+
+
+1.0.1 - Dynamic UI
+------------------
+
+This time around, we implement a snazzy AJAX based browsing capability for
+sites and people at those sites.  We also address the following issues:
+
+* CA-657 - Add "Clinical Validation Center" as one of the anointed, special
+  sites
+* CA-659 - Add Site ID to Site view
+* CA-666 - Sites Page clean up
+
+Take a look at the issue tracker at https://oodt.jpl.nasa.gov/jira/browse/CA
+for more details.
+
+
+1.0.0 - Prime Time
+------------------
+
+This release addresses a number of issues that make this component (and some
+of its selected counterparts) "prime time" for the operational NCI portal.
+
+This release addresses the following issues:
+
+* CA-528 Automatic periodic ingest of RDF
+
+You can find the issue tracker at https://oodt.jpl.nasa.gov/jira/browse/CA
+
+
+0.0.3 - Ordering
+----------------
+
+This release addresses the following issue:
+
+* CA-609 - Do not show "Unknown Type" from Sites List and notify DMCC
+* CA-610 - Sort Other Misc.  Sites within the grouped Site Type - alpha by
+  Site Name
+
+For details on issues, visit the issue tracker at
+https://oodt.jpl.nasa.gov/jira/browse/CA.
+
+
+0.0.2 - Linky Defense
+---------------------
+
+This release addresses the following issues:
+
+* https://oodt.jpl.nasa.gov/jira/browse/CA-557 - PI - email needs to be link.
+* https://oodt.jpl.nasa.gov/jira/browse/CA-571 - Make RDF ingest defensive
+  against inconsistent data
+
+
+0.0.1 - Investigators & HTML Formatting
+---------------------------------------
+
+The following issues are addressed in this release:
+
+* http://oodt.jpl.nasa.gov/jira/browse/CA-483 - Sort Site List by Investigator
+  w/i Scientific Components
+* http://oodt.jpl.nasa.gov/jira/browse/CA-468 - Sites - Co-Investigators and
+  Staff are not correct - and investigators duplicated in Sites subsection
+* http://oodt.jpl.nasa.gov/jira/browse/CA-472 - Protocols and other items seem
+  to still have encoded ASCII characters in the titles
+
+
+Release 0.0.0
+-------------
+
+Beta release. This release is destined to become the FCS_.
+
+
+.. References:
+.. _FCS: http://en.wikipedia.org/wiki/Development_stage
