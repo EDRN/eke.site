@@ -1,5 +1,5 @@
 # encoding: utf-8
-# Copyright 2010 California Institute of Technology. ALL RIGHTS
+# Copyright 2010-2011 California Institute of Technology. ALL RIGHTS
 # RESERVED. U.S. Government Sponsorship acknowledged.
 
 from Products.CMFCore.utils import getToolByName
@@ -14,3 +14,7 @@ def addProtocolIDs(setupTool):
         o = i.getObject()
         newID = str(o.identifier.split('/')[-1]) + '-' + o.getId()
         o.setId(newID)
+
+def nullUpgradeStep(setupTool):
+    pass
+    
