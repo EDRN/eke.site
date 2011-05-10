@@ -8,6 +8,5 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     <description>Site and staff information for the EDRN Knowledge Environment</description>
     <dependencies>
         <dependency>profile-eke.knowledge:default</dependency>
-        <dependency>profile-eke.study:default</dependency>
     </dependencies>
 </metadata>
