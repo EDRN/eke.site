@@ -16,7 +16,7 @@ class EKESite(PloneSandboxLayer):
         eke.site.tests.base.registerLocalTestData()
     def setUpPloneSite(self, portal):
         self.applyProfile(portal, 'eke.site:default')
-    def teatDownZope(self, app):
+    def tearDownZope(self, app):
         z2.uninstallProduct(app, 'eke.site')
 
 EKE_SITE_FIXTURE = EKESite()
