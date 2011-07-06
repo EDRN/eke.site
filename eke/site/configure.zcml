@@ -14,10 +14,8 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     <include package='eea.facetednavigation' file='meta.zcml'/>
     <include package='eea.facetednavigation' file='overrides.zcml'/>
     <include package='eea.facetednavigation' />
-    <include package='p4a.subtyper' />
     <include package='.browser'/>
     <include package='.content'/>
-    <include package='.subtypes'/>
     <genericsetup:registerProfile 
         name='default'
         title='EKE: Sites'
