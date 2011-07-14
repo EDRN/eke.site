@@ -7,8 +7,8 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
-1.1.2 - TBD
------------
+1.1.2 - Dependency Cleanup
+--------------------------
 
 This release drops the dependency on the P4A_ "subtyper" mechanism, as the
 EEA_ `faceted navigation`_ mechanism no longer needs it.
