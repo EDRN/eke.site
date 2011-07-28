@@ -364,7 +364,7 @@ directlyProvides(SiteNamesVocabularyFactory, IVocabularyFactory)
 def MemberTypeVocabularyFactory(context):
     catalog = getToolByName(context, 'portal_catalog')
     memberTypes = [(i, i) for i in catalog.uniqueValuesFor('memberType')]
-    memberTypes.sort(reverse=True)
+    memberTypes.sort()
     return SimpleVocabulary.fromItems(memberTypes)
 directlyProvides(MemberTypeVocabularyFactory, IVocabularyFactory)
 

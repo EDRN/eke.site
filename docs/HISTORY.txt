@@ -7,14 +7,23 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
-1.1.2 - Dependency Cleanup
+1.1.3 — Flip-Flop
+-----------------
+
+First they want it reversed, now they don't:
+
+* CA-789 - On the members list, under the site Type box, sort them
+  alphabetically
+
+
+1.1.2 — Dependency Cleanup
 --------------------------
 
 This release drops the dependency on the P4A_ "subtyper" mechanism, as the
 EEA_ `faceted navigation`_ mechanism no longer needs it.
 
 
-1.1.1 - Upgrade Cleanup
+1.1.1 — Upgrade Cleanup
 -----------------------
 
 This release updates the GenericSetup profile to 4, provides upgrade steps to
@@ -23,13 +32,13 @@ level of other eggs instead of on released versions of those eggs.  Also, it
 removes in incompatible profile dependency.
 
 
-1.1.0 - Plone 4
+1.1.0 — Plone 4
 ---------------
 
 This release makes eke.site compatible with Plone 4.
 
 
-1.0.4 - Context Sensitive People
+1.0.4 — Context Sensitive People
 --------------------------------
 
 The two issues addressed in this release are:
@@ -40,7 +49,7 @@ The two issues addressed in this release are:
   category in list at top of page
 
 
-1.0.3 - Organsmic Organ Sites
+1.0.3 — Organsmic Organ Sites
 -----------------------------
 
 * CA-680 - Change Clinical Validation Center to Clinical Validation Centers
@@ -53,7 +62,7 @@ The two issues addressed in this release are:
 * CA-697 - Change Member Type Header SPORE to SPOREs on Sites and Member List
 
 
-1.0.2 - Reorganization
+1.0.2 — Reorganization
 ----------------------
 
 There's some new arrangement of EDRN member sites, so this release tackled
@@ -64,7 +73,7 @@ these two issues:
   and Type B section respectively
 
 
-1.0.1 - Dynamic UI
+1.0.1 — Dynamic UI
 ------------------
 
 This time around, we implement a snazzy AJAX based browsing capability for
@@ -79,7 +88,7 @@ Take a look at the issue tracker at https://oodt.jpl.nasa.gov/jira/browse/CA
 for more details.
 
 
-1.0.0 - Prime Time
+1.0.0 — Prime Time
 ------------------
 
 This release addresses a number of issues that make this component (and some
@@ -92,7 +101,7 @@ This release addresses the following issues:
 You can find the issue tracker at https://oodt.jpl.nasa.gov/jira/browse/CA
 
 
-0.0.3 - Ordering
+0.0.3 — Ordering
 ----------------
 
 This release addresses the following issue:
@@ -105,7 +114,7 @@ For details on issues, visit the issue tracker at
 https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
-0.0.2 - Linky Defense
+0.0.2 — Linky Defense
 ---------------------
 
 This release addresses the following issues:
@@ -115,7 +124,7 @@ This release addresses the following issues:
   against inconsistent data
 
 
-0.0.1 - Investigators & HTML Formatting
+0.0.1 — Investigators & HTML Formatting
 ---------------------------------------
 
 The following issues are addressed in this release:
