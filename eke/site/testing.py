@@ -24,6 +24,8 @@ class _TestingMailHost(object):
     def getSentMessages(self):
         global _sentMessages
         return _sentMessages
+    def getId(self):
+        return 'MailHost'
 
 _testingMailHost = _TestingMailHost()
 
