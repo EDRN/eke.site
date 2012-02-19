@@ -6,14 +6,19 @@
 EKE Sites: test the setup of this package.
 '''
 
-from eke.site.tests.base import BaseTestCase
+import unittest2 as unittest
+from eke.site.testing import EKE_SITE_INTEGRATION_TESTING
 from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
-import unittest
+from plone.app.testing import TEST_USER_ID, setRoles, login, TEST_USER_NAME
 
-class TestSetup(BaseTestCase):
+class SetupTest(unittest.TestCase):
     '''Unit tests the setup of this package.'''
+    layer = EKE_SITE_INTEGRATION_TESTING
+    def setUp(self):
+        super(SetupTest, self).setUp()
+        self.portal = self.layer['portal']
     def testCatalogIndexes(self):
         '''Check if indexes are properly installed.'''
         catalog = getToolByName(self.portal, 'portal_catalog')
@@ -59,11 +64,11 @@ class TestSetup(BaseTestCase):
         '''Expose CA-725: Vocabularies eke.site.People and eke.site.PeopleWithNoReference are context-dependent'''
         membershipTool = getToolByName(self.portal, 'portal_membership')
         membershipTool.addMember('manager', 'secret', ['Manager'], [])
-        self.login('manager')
+        login(self.portal, 'manager')
         folder = self.portal[self.portal.invokeFactory('Folder', 'folder')]
         sites = self.portal[self.portal.invokeFactory('Site Folder', 'sites')]
         site = sites[sites.invokeFactory('Site', 'site')]
-        person = site[site.invokeFactory('Person', 'person')]
+        site.invokeFactory('Person', 'person')
         vocabFactory = queryUtility(IVocabularyFactory, name=u'eke.site.People')
         fromFolder, fromSite = vocabFactory(folder), vocabFactory(site)
         self.assertEquals(len(fromFolder), len(fromSite))
@@ -72,7 +77,7 @@ class TestSetup(BaseTestCase):
         self.assertEquals(len(fromFolder), len(fromSite))
 
 def test_suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestSetup))
-    return suite
-    
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
+
+if __name__ == '__main__':
+    unittest.main(defaultTest='test_suite')
