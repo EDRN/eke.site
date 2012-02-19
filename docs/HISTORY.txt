@@ -7,6 +7,14 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
+1.1.4 — TBD
+-----------
+
+This release includes:
+
+* Depending on just Plone the framework instead of Plone the application.
+ 
+
 1.1.3 — Flip-Flop
 -----------------
 
