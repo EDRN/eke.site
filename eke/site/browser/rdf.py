@@ -173,9 +173,7 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 }
                 subject = _(u'Notice: the portal ingested some EDRN sites with NO member type')
                 try:
-                    mailTool.secureSend(
-                        message, mto=_na, mfrom=src, subject=subject, mcc=None, mbcc=None, subtype='plain', charset=charset
-                    )
+                    mailTool.send(message, mto=_na, mfrom=src, subject=subject, charset=charset)
                 except (socket.error, smtplib.SMTPException):
                     pass
         self._results = Results(self.objects, warnings)
