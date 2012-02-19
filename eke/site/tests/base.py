@@ -19,22 +19,6 @@ import eke.knowledge.tests.base as ekeKnowledgeBase
 
 _logger = logging.getLogger('Plone')
 
-# Traditional Products we have to load manually for test cases:
-# (none at this time)
-
-@onsetup
-def setupEKESite():
-    '''Set up additional products required.'''
-    fiveconfigure.debug_mode = True
-    import eke.site
-    zcml.load_config('configure.zcml', eke.site)
-    fiveconfigure.debug_mode = False
-    ztc.installPackage('eea.facetednavigation')
-    ztc.installPackage('eke.site')
-
-setupEKESite()
-ptc.setupPloneSite(products=['eke.site'])
-
 _singlePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
    xmlns:_3="http://xmlns.com/foaf/0.1/"
@@ -494,46 +478,4 @@ def registerLocalTestData():
     ekeKnowledgeBase.registerTestData('/people/the-strangler.png', _fakeImage)
     ekeKnowledgeBase.registerTestData('/sites/mangled', _mangledSitesRDF)
     ekeKnowledgeBase.registerTestData('/people/empty', _emptyPeopleRDF)
-
-_sentMessages = []
-
-class _TestingMailHost(object):
-    def __init__(self):
-        self.resetSentMessages()
-    def send(self, message, mto=None, mfrom=None, subject=None, encode=None):
-        global _sentMessages
-        _sentMessages.append(message)
-    def secureSend(self, message, mto, mfrom, **kwargs):
-        global _sentMessages
-        _sentMessages.append(message)
-    def resetSentMessages(self):
-        global _sentMessages
-        _sentMessages = []
-    def getSentMessages(self):
-        global _sentMessages
-        return _sentMessages
-
-_testingMailHost = _TestingMailHost()
-
-class BaseTestCase(ekeKnowledgeBase.BaseTestCase):
-    '''Base for tests in this package.'''
-    def setUp(self):
-        super(BaseTestCase, self).setUp()
-        registerLocalTestData()
-
-class FunctionalBaseTestCase(ekeKnowledgeBase.FunctionalBaseTestCase):
-    '''Base class for functional (doc-)tests.'''
-    def setUp(self):
-        super(FunctionalBaseTestCase, self).setUp()
-        registerLocalTestData()
-        self.portal._original_MailHost = self.portal.MailHost
-        self.portal.MailHost = mailHost = _testingMailHost
-        siteManager = getSiteManager(self.portal)
-        siteManager.unregisterUtility(provided=IMailHost)
-        siteManager.registerUtility(mailHost, provided=IMailHost)
-    def tearDown(self):
-        self.portal.MailHost = self.portal._original_MailHost
-        siteManager = getSiteManager(self.portal)
-        siteManager.unregisterUtility(provided=IMailHost)
-        siteManager.registerUtility(aq_base(self.portal._original_MailHost), IMailHost)
 
