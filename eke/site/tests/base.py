@@ -6,14 +6,6 @@
 Testing base code.
 '''
 
-from Acquisition import aq_base
-from Products.Five import fiveconfigure
-from Products.Five import zcml
-from Products.MailHost.interfaces import IMailHost
-from Products.PloneTestCase import PloneTestCase as ptc
-from Products.PloneTestCase.layer import onsetup
-from Testing import ZopeTestCase as ztc
-from zope.component import getSiteManager
 import base64, logging
 import eke.knowledge.tests.base as ekeKnowledgeBase
 
