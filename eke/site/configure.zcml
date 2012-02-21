@@ -9,11 +9,9 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     xmlns:genericsetup='http://namespaces.zope.org/genericsetup'
     xmlns:zcml='http://namespaces.zope.org/zcml'
     i18n_domain='eke.site'>
-
-    <five:registerPackage package="." initialize=".initialize" />
-    <include package='eea.facetednavigation' file='meta.zcml'/>
-    <include package='eea.facetednavigation' file='overrides.zcml'/>
-    <include package='eea.facetednavigation' />
+    <include package='z3c.autoinclude' file='meta.zcml' />
+    <includeDependencies package='.' />
+    <five:registerPackage package='.' initialize='.initialize' />
     <include package='.browser'/>
     <include package='.content'/>
     <genericsetup:registerProfile 
