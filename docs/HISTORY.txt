@@ -7,6 +7,12 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
+1.1.5 — Upgrades
+----------------
+
+Made compatible with Plone 4.1.5 and eea.facetednavigation 4.5
+
+
 1.1.4 — Test Support
 --------------------
 

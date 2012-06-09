@@ -29,6 +29,7 @@ _externalRequirements = [
     'eea.facetednavigation',
     'rdflib < 2.5.0',
     'Products.CMFPlone',
+    'zope.globalrequest',
 ]
 _classifiers = [
     'Development Status :: 4 - Beta',
