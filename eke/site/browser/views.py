@@ -243,7 +243,8 @@ class SiteView(KnowledgeObjectView):
         ):
             anointed |= set(investigators)
         for investigator in anointed:
-            del staff[investigator]
+            if investigator in staff:
+                del staff[investigator]
         staff = staff.values()
         staff.sort()
         return staff
