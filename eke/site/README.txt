@@ -1163,6 +1163,33 @@ Now we view the folder::
 Wonderful. CA-680 is fixed.
 
 
+Person De-Duplication
+~~~~~~~~~~~~~~~~~~~~~
+
+When a PI is a PI of more than one site, Dan doesn't want us to duplicate the
+person object, but instead of the second site refer to the first.  Our code
+already supports most of that, but there's an issue when viewing a site whose
+PI belongs elsewhere.  That's CA-1029; is it fixed?  Let's make a site and set
+the PI to someone from another site altogether::
+
+    >>> browser.open(portalURL + '/questionable-sites')
+    >>> browser.getLink(id='site').click()
+    >>> browser.getControl(name='title').value = 'Outsourced PI Site'
+    >>> browser.getControl(name='description').value = 'This site has an external principal investigator.'
+    >>> browser.getControl(name='identifier').value = 'http://cia.gov/edrn/outsourced'
+    >>> browser.getControl(name='abbreviation').value = 'OS'
+    >>> browser.getControl(name='principalInvestigator:list').displayValue = ['Montoya']
+    >>> browser.getControl(name='form.button.save').click()
+
+Now, viewing it::
+
+    >>> browser.open(portalURL + '/questionable-sites/outsourced-pi-site')
+    >>> browser.contents
+    '...Outsourced PI Site...Montoya...'
+
+Looks great!
+
+
 SPORE
 ~~~~~
 
