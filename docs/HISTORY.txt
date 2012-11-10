@@ -12,6 +12,7 @@ at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 This release includes:
 
+* CA-971 - Sponsoring site is non-optional, must be optional
 * CA-1029 - Sites cannot be displayed if the have outside PIs
 
 

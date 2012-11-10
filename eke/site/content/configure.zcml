@@ -18,6 +18,10 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         name='eke.site.Sites'
     />
     <utility
+        component='.site.SiteVocabularyWithNoReferenceFactory'
+        name='eke.site.SitesWithNoReference'
+    />
+    <utility
         component='.site.SiteNamesVocabularyFactory'
         name='eke.site.SitesNames'
     />

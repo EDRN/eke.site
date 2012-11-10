@@ -14,7 +14,7 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implements, directlyProvides
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from Products.ATContentTypes.content.folder import ATFolder
 
 SiteSchema = knowledgeobject.KnowledgeObjectSchema.copy() + ATFolder.schema.copy() + atapi.Schema((
@@ -36,7 +36,7 @@ SiteSchema = knowledgeobject.KnowledgeObjectSchema.copy() + ATFolder.schema.copy
         relationship='sponsoredBy',
         required=False,
         storage=atapi.AnnotationStorage(),
-        vocabulary_factory=u'eke.site.Sites',
+        vocabulary_factory=u'eke.site.SitesWithNoReference',
         vocabulary_display_path_bound=-1,
         widget=atapi.ReferenceWidget(
             label=_(u'Sponsoring Site'),
@@ -350,6 +350,13 @@ def SiteVocabularyFactory(context):
     items = [(u'%s (%s)' % (i.Title, i.siteID), i.UID) for i in results]
     return SimpleVocabulary.fromItems(items)
 directlyProvides(SiteVocabularyFactory, IVocabularyFactory)
+
+def SiteVocabularyWithNoReferenceFactory(context):
+    terms = [i for i in SiteVocabularyFactory(context)]
+    noReference = u'<no reference>' # FIXME: not i18n
+    terms.insert(0, SimpleTerm('', noReference))
+    return SimpleVocabulary(terms)
+directlyProvides(SiteVocabularyWithNoReferenceFactory, IVocabularyFactory)
 
 def SiteNamesVocabularyFactory(context):
     catalog = getToolByName(context, 'portal_catalog')
