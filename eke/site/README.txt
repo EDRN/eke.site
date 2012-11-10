@@ -197,6 +197,16 @@ sponsored by our first site::
     >>> p2.sponsor.title
     u'Platform One'
 
+CA-971 notices that sponsoring is required—i.e., the sponsoring site field
+defaults to some site and there's no way to make it unset.  Well, that *was*
+the case, but notice now::
+
+    >>> browser.getLink('Edit').click()
+    >>> browser.contents
+    '...Edit...Sponsoring Site...&lt;no reference&gt;...Platform One...Platform Two...'
+
+See?  You can set it to "<no reference>" to mean no sponsoring site.
+
 CA-666 wants sponsors to show up only for associate member sites.  Platform
 Two, as created above, is a full Biomarker Reference Lab, and so even though
 it's a sponsored site, we need to hide that fact.  Do we?  Checking::

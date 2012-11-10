@@ -44,7 +44,8 @@ class SetupTest(unittest.TestCase):
     def testVocabulaies(self):
         '''Verify that our vocabularies are available'''
         vocabs = (
-            u'Sites', u'People', u'PeopleWithNoReference', u'PrincipalInvestigators', u'NotPeons', u'MemberType', u'SitesNames'
+            u'Sites', u'People', u'PeopleWithNoReference', u'PrincipalInvestigators', u'NotPeons', u'MemberType', u'SitesNames',
+            u'SitesWithNoReference'
         )
         for v in vocabs:
             vocabName = u'eke.site.' + v
