@@ -232,12 +232,25 @@ atapi.registerType(Person, PROJECTNAME)
 def PersonVocabularyFactory(context):
     catalog = getToolByName(context, 'portal_catalog')
     # TODO: filter by review_state? Or by a specific site?
-    results = catalog(
-        object_provides=IPerson.__identifier__,
-        sort_on='sortable_title'
-    )
-    items = [(u'%s (%s)' % (i.Title, i.siteID), i.UID) for i in results]
-    return SimpleVocabulary.fromItems(items)
+    results = catalog(object_provides=IPerson.__identifier__)
+    items = {}
+    for i in results:
+        key = u'%s (%s)' % (i.Title, i.siteID)
+        uids = items.get(key, [])
+        uids.append(i.UID)
+        items[key] = uids
+    items = items.items()
+    items.sort(lambda a, b: cmp(a[0], b[0]))
+    vocabTokens = []
+    for key, uids in items:
+        if len(uids) == 1:
+            vocabTokens.append((key, uids[0]))
+        else:
+            counter = 0
+            for uid in uids:
+                counter += 1
+                vocabTokens.append((u'%s [%d]' % (key, counter), uid))
+    return SimpleVocabulary.fromItems(vocabTokens)
 directlyProvides(PersonVocabularyFactory, IVocabularyFactory)
 
 def PersonVocabularyWithNoReferenceFactory(context):

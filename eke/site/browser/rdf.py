@@ -100,7 +100,7 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
         createdObjects = []
         handler = SiteHandler()
         for uri, predicates in statements.items():
-            results = catalog(identifier=uri, object_provides=ISite.__identifier__)
+            results = catalog(identifier=unicode(uri), object_provides=ISite.__identifier__)
             objectID = handler.generateID(uri, predicates, normalizerFunction)
             if len(results) == 1 or objectID in context.keys():
                 # Existing site. Update it

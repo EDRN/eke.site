@@ -14,6 +14,8 @@ This release includes:
 
 * CA-971 - Sponsoring site is non-optional, must be optional
 * CA-1029 - Sites cannot be displayed if the have outside PIs
+* CA-1037 - Karen Andrerson not listed as PI of Dana Farber
+* CA-1049 - Allow duplicate people at different sites
 
 
 1.1.5 — Upgrades
