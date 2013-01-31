@@ -16,6 +16,7 @@ This release includes:
 * CA-1029 - Sites cannot be displayed if the have outside PIs
 * CA-1037 - Karen Andrerson not listed as PI of Dana Farber
 * CA-1049 - Allow duplicate people at different sites
+* Plone 4.2.4 compatibility
 
 
 1.1.5 — Upgrades
