@@ -7,8 +7,8 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
-1.1.6 — TBD
------------
+1.1.6 — The Clone Wars
+----------------------
 
 This release includes:
 
