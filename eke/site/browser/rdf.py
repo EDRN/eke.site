@@ -37,6 +37,7 @@ _coPIPredicateURI         = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#copi'
 _dcTitleURI               = URIRef(dublincore.TITLE_URI)
 _givenNamePredicateURI    = URIRef('http://xmlns.com/foaf/0.1/givenname')
 _investigatorPredicateURI = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#investigator')
+_accountNamePredURI       = URIRef('http://xmlns.com/foaf/0.1/accountName')
 _ma1PredURI               = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#mailAddr1')
 _ma2PredURI               = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#mailAddr2')
 _maCityPredURI            = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#mailCity')
@@ -111,12 +112,13 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 updateObject(s, uri, predicates, context)
                 if _memberTypeURI in predicates and len(predicates[_memberTypeURI]) > 0:
                     s.memberType = _transformMemberType(unicode(predicates[_memberTypeURI][0]))
-                # Kill my children since they'll be re-created below
+                # Reset my investigators
                 s.setPrincipalInvestigator(None)
                 s.setCoPrincipalInvestigators([])
                 s.setCoInvestigators([])
                 s.setInvestigators([])
-                s.manage_delObjects(s.objectIds())
+                # FIXME:
+                # s.manage_delObjects(s.objectIds())
                 # FIXME: Refactor
                 for f, predicateURIs in (
                     ('mailingAddress', _mailAddrPreds), ('physicalAddress', _physAddrPreds), ('shippingAddress', _shipAddrPreds)
@@ -149,12 +151,12 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
         self.objects = createdObjects
         statements, createdSites = self._updateSponsors()
         self._updateSiteIDs(createdSites.values())
-        createdPeople = self._ingestPeople()
-        warnings = self._updateInvestigators(statements, createdSites, createdPeople)
+        folks = self._ingestPeople()
+        warnings = self._updateInvestigators(statements, createdSites, folks)
         for site in createdSites.values():
             site.obj.reindexObject()
         # Set the PI's UID on all members so we can search for everyone who works for his PI'liness
-        for createdPerson in createdPeople.itervalues():
+        for createdPerson in folks.itervalues():
             createdPerson.piUID = createdPerson.aq_parent.piUID
         # CA-609: check for sites without any member type
         mailTool = getToolByName(aq_inner(self.context), 'MailHost')
@@ -300,6 +302,7 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
         else:
             return '%s, %s' % (last, given)
     def _generatePersonID(self, predicates, normalizerFunction):
+        # FIXME
         return normalizerFunction(' '.join(self._createNameComponentsFromPredicates(predicates)))
     def _getNameComponent(self, predicateURI, predicates):
         '''Return a component of a human being's name identified by predicateURI from the

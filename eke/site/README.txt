@@ -459,6 +459,7 @@ Inside a Site object is just fine::
     >>> browser.getControl(name='specialty').value = 'Pansies'
     >>> browser.getControl(name='image_file').add_file(fakeImage, 'image/png', 'fakeImage.png')
     >>> browser.getControl(name='mbox').value = 'mailto:pdm87801@aol.com'
+    >>> browser.getControl(name='accountName').value = 'kittyfan7122'
 
 Notice we haven't set the title.  The object's title should be automatically
 generated from the person's names.  Let's submit this form and see if it
@@ -466,9 +467,9 @@ works::
 
     >>> browser.getControl(name='form.button.save').click()
     >>> site = portal['questionable-sites']['platform-one']
-    >>> 'montoya-prospero-diego' in site.objectIds()
+    >>> 'kittyfan7122' in site.objectIds()
     True
-    >>> pdm = site['montoya-prospero-diego']
+    >>> pdm = site['kittyfan7122']
     >>> pdm.title
     'Montoya, Prospero Diego'
     >>> pdm.identifier
@@ -491,6 +492,8 @@ works::
     'Pansies'
     >>> pdm.mbox
     'mailto:pdm87801@aol.com'
+    >>> pdm.accountName
+    'kittyfan7122'
 
 Notice how the last name was formatted?  It uses all of the name fields to
 generate a title.  However, let's make sure that generation works even when
@@ -562,6 +565,35 @@ study (who happens to be the PI).  However, let's put things back to normal now:
     >>> browser.getControl(name='principalInvestigator:list').displayValue = ['<no reference>']
     >>> browser.getControl(name='form.button.save').click()
 
+Notice this as well: Mr Montoya's object ID was set to his account name.  This
+is new::
+
+    >>> browser.open(portalURL + '/questionable-sites/platform-one/kittyfan7122')
+    >>> xxx = open('/tmp/log.html', 'w'); xxx.write(browser.contents); xxx.close()
+    >>> browser.contents
+    '...Montoya...Account Name...kittyfan7122...'
+
+But not everyone in EDRN has an account name.  What happens then?  Take a
+look::
+
+    >>> browser.open(portalURL + '/questionable-sites/platform-one')
+    >>> browser.getLink(id='person').click()
+    >>> browser.getControl(name='description').value = 'The gardener of the west grounds.'
+    >>> browser.getControl(name='identifier').value = 'http://my.house/staff/3w'
+    >>> browser.getControl(name='givenName').value = 'Harrison'
+    >>> browser.getControl(name='middleName').value = 'Roebuck'
+    >>> browser.getControl(name='surname').value = 'Blithering'
+    >>> browser.getControl(name='mbox').value = 'mailto:brh12993@aol.com'
+    >>> browser.getControl(name='form.button.save').click()
+
+This time, there was no account name, so how do we get the object ID?  Check
+it out::
+
+    >>> 'blithering-harrison-roebuck' in p1.keys()
+    True
+
+No account name means we generate the object ID based on the person's name.
+
 Continuing on...
 
 
@@ -589,7 +621,7 @@ Increasing Spammability
 
 Issue CA-557 wants email addresses appearing on the portal to be clickable::
 
-    >>> browser.open(portalURL + '/questionable-sites/platform-one/montoya-prospero-diego')
+    >>> browser.open(portalURL + '/questionable-sites/platform-one/kittyfan7122')
     >>> browser.contents
     '...Email:...<a href="mailto:pdm87801@aol.com">mailto:pdm87801@aol.com</a>...'
     
@@ -608,7 +640,7 @@ People at a Site should appear on the site's view::
 However, certain people can be anointed as being co-investigators::
 
     >>> browser.getLink('Edit').click()
-    >>> browser.getControl(name='coInvestigators:list').value = 'Montoya'
+    >>> browser.getControl(name='coInvestigators:list').displayValue = ['Montoya (123)']
     >>> browser.getControl(name='form.button.save').click()
     >>> browser.contents
     '...Platform One...Co-Investigators...Montoya...'
@@ -616,7 +648,7 @@ However, certain people can be anointed as being co-investigators::
 Or, as CA-468 reminds us, as even more special co-principal investigators::
 
     >>> browser.getLink('Edit').click()
-    >>> browser.getControl(name='coPrincipalInvestigators:list').value = 'Montoya'
+    >>> browser.getControl(name='coPrincipalInvestigators:list').displayValue = ['Montoya (123)']
     >>> browser.getControl(name='form.button.save').click()
     >>> browser.contents
     '...Platform One...Co-Principal Investigators...Montoya...'
@@ -624,7 +656,7 @@ Or, as CA-468 reminds us, as even more special co-principal investigators::
 Or as investigators, but not necessarily EDRN investigators::
 
     >>> browser.getLink('Edit').click()
-    >>> browser.getControl(name='investigators:list').value = 'Montoya'
+    >>> browser.getControl(name='investigators:list').displayValue = ['Montoya (123)']
     >>> browser.getControl(name='form.button.save').click()
     >>> browser.contents
     '...Platform One...Investigators...Montoya...'
@@ -632,7 +664,7 @@ Or as investigators, but not necessarily EDRN investigators::
 And the primary investigator may be quite special indeed::
 
     >>> browser.getLink('Edit').click()
-    >>> browser.getControl(name='principalInvestigator:list').displayValue = ['Montoya']
+    >>> browser.getControl(name='principalInvestigator:list').displayValue = ['Montoya (123)']
     >>> browser.getControl(name='form.button.save').click()
     >>> browser.contents
     '...Platform One...Principal Investigator...Montoya...Co-Investigators...'

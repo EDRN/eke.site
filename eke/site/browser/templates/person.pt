@@ -70,6 +70,11 @@
 		    <label for='parent-fieldname-specialty' i18n:translate='label_specialty'>Specialty:</label>
 		    <metal:field use-macro='python:context.widget("specialty", mode="view")'>Poobahing.</metal:field>
 		</div>
+        <div>
+            <label for='parent-fieldname-accountName' i18n:translate='label_accountName'>EDRN Account Name:</label>
+            <metal:field use-macro='python:context.widget("accountName", mode="view")'>lolcat1234</metal:field>
+        </div>
+        
                 <div metal:use-macro='context/document_relateditems/macros/relatedItems'>
                     Any related items
                 </div>

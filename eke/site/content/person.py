@@ -10,6 +10,8 @@ from eke.site import ProjectMessageFactory as _
 from eke.site.config import PROJECTNAME
 from eke.site.interfaces import IPerson, ISite
 from eke.site.utils import generateTitleFromNameComponents
+from plone.i18n.normalizer.interfaces import IURLNormalizer
+from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from Products.Archetypes import atapi
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
@@ -173,6 +175,16 @@ PersonSchema = knowledgeobject.KnowledgeObjectSchema.copy() + atapi.Schema((
             visible={'edit': 'visible', 'view': 'invisible'},
         ),
     ),
+    atapi.StringField(
+        'accountName',
+        storage=atapi.AnnotationStorage(),
+        searchable=False,
+        required=False,
+        widget=atapi.StringWidget(
+            label=_(u'Account Name'),
+            description=_(u'DMCC-assigned account username. Note that changing this manually has no effect at the DMCC.'),
+        ),
+    ),
 ))
 
 finalizeATCTSchema(PersonSchema, folderish=False, moveDiscussion=False)
@@ -194,6 +206,7 @@ class Person(knowledgeobject.KnowledgeObject):
     memberType         = atapi.ATFieldProperty('memberType')
     siteName           = atapi.ATFieldProperty('siteName')
     piUID              = atapi.ATFieldProperty('piUID')
+    accountName        = atapi.ATFieldProperty('accountName')
     def _computeTitle(self):
         return generateTitleFromNameComponents((self.surname, self.givenName, self.middleName))
     def tag(self, **kwargs):
@@ -226,6 +239,15 @@ class Person(knowledgeobject.KnowledgeObject):
         if parent is None or not ISite.providedBy(parent): return
         # Update my attributes accordingly
         self.siteName, self.memberType, self.piUID = parent.title, parent.memberType, parent.piUID
+    def generateNewId(self):
+        if self.accountName:
+            request = getattr(self, 'REQUEST', None)
+            if request is not None:
+                return IUserPreferredURLNormalizer(request).normalize(self.accountName)
+            else:
+                return queryUtility(IURLNormalizer).normalize(self.accountName)
+        else:
+            return super(Person, self).generateNewId()
 
 atapi.registerType(Person, PROJECTNAME)
 

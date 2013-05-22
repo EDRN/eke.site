@@ -82,6 +82,11 @@ class IPerson(IKnowledgeObject, IImageContent):
         description=_(u'Unique identifier of the principal investigator of the site where this person works.'),
         required=False,
     )
+    accountName = schema.TextLine(
+        title=_(u'Account Name'),
+        description=_(u'DMCC-assigned account username.'),
+        required=False,
+    )
     
 
 # Pre-declared so that the "sponsor" field works, see below.
