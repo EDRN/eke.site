@@ -569,7 +569,6 @@ Notice this as well: Mr Montoya's object ID was set to his account name.  This
 is new::
 
     >>> browser.open(portalURL + '/questionable-sites/platform-one/kittyfan7122')
-    >>> xxx = open('/tmp/log.html', 'w'); xxx.write(browser.contents); xxx.close()
     >>> browser.contents
     '...Montoya...Account Name...kittyfan7122...'
 
