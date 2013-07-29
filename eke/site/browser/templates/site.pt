@@ -105,9 +105,6 @@
                     <div class="visualClear"><!-- --></div>
                 </div>
                 <div tal:replace='structure provider:plone.belowcontentbody' />
-                <div metal:use-macro='context/document_relateditems/macros/relatedItems'>
-                    Any related items
-                </div>
             </tal:main-macro>
         </metal:main>
     </body>

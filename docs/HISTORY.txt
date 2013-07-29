@@ -10,6 +10,7 @@ at https://oodt.jpl.nasa.gov/jira/browse/CA.
 1.1.7 — TBD
 -----------
 
+Plone 4.3 compatibility.
 
 
 1.1.6 — The Clone Wars
