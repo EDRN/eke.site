@@ -18,9 +18,11 @@ _author      = 'Sean Kelly'
 _authorEmail = 'sean.kelly@jpl.nasa.gov'
 _license     = 'Proprietary'
 _namespaces  = ['eke']
-_entryPoints = {}
 _zipSafe     = False
 _keywords    = 'web zope plone edrn cancer biomarkers eke member site staff investigator people peon minion'
+_entryPoints     = {
+    'z3c.autoinclude.plugin': ['target=plone'],
+}
 _extras = {
     'test': ['plone.app.testing'],
 }
@@ -30,6 +32,7 @@ _externalRequirements = [
     'rdflib < 2.5.0',
     'Products.CMFPlone',
     'zope.globalrequest',
+    'z3c.autoinclude',
 ]
 _classifiers = [
     'Development Status :: 4 - Beta',
