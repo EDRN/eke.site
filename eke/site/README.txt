@@ -1257,6 +1257,29 @@ Now we view the folder::
     '...SPOREs...A Spore Site...'
 
 
+People Moving Between Sites
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Apparently if a person moves between sites, you can't manually add any new sites::
+
+    >>> browser.open(portalURL + '/annoying-sites')
+    >>> browser.getLink('Edit').click()
+    >>> browser.getControl(name='rdfDataSource').value = 'testscheme://localhost/sites/b'
+    >>> browser.getControl(name='peopleDataSource').value = 'testscheme://localhost/people/b'
+    >>> browser.getControl(name='form.button.save').click()
+    >>> browser.getLink('Ingest').click()
+    >>> browser.getLink('Edit').click()
+    >>> browser.getControl(name='peopleDataSource').value = 'testscheme://localhost/people/moved'
+    >>> browser.getControl(name='form.button.save').click()
+    >>> browser.getLink('Ingest').click()
+    >>> browser.open(portalURL + '/annoying-sites')
+    >>> browser.getLink(id='site').click()
+    >>> "We're sorry" in browser.contents
+    False
+
+No error anymore.
+
+
 RDF Data Sources
 ~~~~~~~~~~~~~~~~
 

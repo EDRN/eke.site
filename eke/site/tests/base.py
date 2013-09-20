@@ -67,6 +67,42 @@ _doublePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
   </rdf:Description>
 </rdf:RDF>'''
 
+_movedPersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:_3="http://xmlns.com/foaf/0.1/"
+   xmlns:_4="http://edrn.nci.nih.gov/rdf/schema.rdf#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/1">
+    <_4:site rdf:resource="http://tongue.com/clinic/3d"/>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_3:surname>Pawaka</_3:surname>
+    <_3:givenname>Makin</_3:givenname>
+    <_3:phone>+61 2 9355 5555</_3:phone>
+    <_3:mbox>mailto:mp69@aol.com</_3:mbox>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/2">
+    <_4:site rdf:resource="http://plain.com/2d"/>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_3:surname>Cusexijilomimi</_3:surname>
+    <_4:middleName>Hotstuff</_4:middleName>
+    <_3:givenname>Crystal</_3:givenname>
+    <_3:phone>+61 2 9355 5556</_3:phone>
+    <_3:mbox>mailto:chc69@aol.com</_3:mbox>
+    <_4:edrnTitle>Hot Stuff</_4:edrnTitle>
+    <_4:specialty>Tossed Salads</_4:specialty>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/3">
+    <_4:site rdf:resource="http://plain.com/2d"/>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_3:surname>Alottaspank</_3:surname>
+    <_3:givenname>Dirk</_3:givenname>
+    <_3:phone>+62 2 9355 5556</_3:phone>
+    <_3:mbox>mailto:drs69@aol.com</_3:mbox>
+  </rdf:Description>
+</rdf:RDF>'''
+
+
 _singleSiteRDF = '''<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xmlns:_3="http://edrn.nci.nih.gov/rdf/schema.rdf#" xmlns:_4="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <rdf:Description rdf:about="http://tongue.com/clinic/3d">
@@ -464,6 +500,7 @@ def registerLocalTestData():
     ekeKnowledgeBase.registerTestData('/sites/many', _manySitesRDF)
     ekeKnowledgeBase.registerTestData('/people/a', _singlePersonRDF)
     ekeKnowledgeBase.registerTestData('/people/b', _doublePersonRDF)
+    ekeKnowledgeBase.registerTestData('/people/moved', _movedPersonRDF)
     ekeKnowledgeBase.registerTestData('/people/many', _manyPeopleRDF)
     ekeKnowledgeBase.registerTestData('/sites/sample', _sampleSiteRDF)
     ekeKnowledgeBase.registerTestData('/people/sample', _samplePersonRDF)
