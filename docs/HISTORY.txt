@@ -7,8 +7,8 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
-1.1.8 — TBD
------------
+1.1.8 — Dupe dupe dupe dupe dupe
+--------------------------------
 
 • CA-1123 - Duplicate Person objects in portal when someone moves from one Site
   to another Site
