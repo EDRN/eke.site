@@ -490,6 +490,49 @@ _mangledSitesRDF = '''<?xml version="1.0" encoding="UTF-8"?>
 _emptyPeopleRDF = '''<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>'''
 
+_chileanSiteRDF = '''<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:ns1="http://edrn.nci.nih.gov/rdf/schema.rdf#"
+   xmlns:ns2="http://purl.org/dc/terms/">
+  <rdf:Description rdf:about="http://edrn.nci.nih.gov/data/sites/763">
+    <ns2:title>Clínica Las Condes/Universidad de chilen</ns2:title>
+    <ns1:abbrevName>Wït</ns1:abbrevName>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Site"/>
+    <ns1:staff rdf:resource="http://edrn.nci.nih.gov/data/registered-person/3417"/>
+    <ns1:pi rdf:resource="http://edrn.nci.nih.gov/data/registered-person/3417"/>
+    <ns1:memberType>Non-EDRN Site</ns1:memberType>
+    <ns1:program>🍺</ns1:program>
+    <ns1:fwa>♥</ns1:fwa>
+    <ns1:historicalNotes>👳</ns1:historicalNotes>
+    </rdf:Description>
+</rdf:RDF>'''
+
+_chileanPersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:ns1="http://edrn.nci.nih.gov/rdf/schema.rdf#"
+   xmlns:ns2="http://www.w3.org/2001/vcard-rdf/3.0#"
+   xmlns:ns3="http://xmlns.com/foaf/0.1/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="http://edrn.nci.nih.gov/data/registered-person/3417">
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <ns3:givenname>José</ns3:givenname>
+    <ns1:middleName></ns1:middleName>
+    <ns3:surname>🐰</ns3:surname>
+    <ns3:phone>6770🐬128</ns3:phone>
+    <ns2:fax>🐤</ns2:fax>
+    <ns1:edrnTitle>🎅</ns1:edrnTitle>
+    <ns1:specialty>🚲</ns1:specialty>
+    <ns1:addr2>Lo Fontecilla 441</ns1:addr2>
+    <ns1:country>Chile</ns1:country>
+    <ns1:middleName>C</ns1:middleName>
+    <ns1:site rdf:resource="http://edrn.nci.nih.gov/data/sites/763"/>
+    <ns1:state>Santiago Metropolitan Region&lt;/Mailing_State&gt;&lt;Mailing_Zip&gt;6770128&lt;/Mailing_Zip&gt;&lt;Mailing_State&gt;Santiago Metropolitan Region</ns1:state>
+    <ns1:city>Santiago</ns1:city>
+    <ns1:addr1>Clínica Las Condes/Universidad de Chile</ns1:addr1>
+    <ns3:mbox rdf:resource="mailto:jclavero@clc.cl"/>
+  </rdf:Description>
+</rdf:RDF>'''
+
 _fakeImage = base64.b64decode('R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==')
 
 def registerLocalTestData():
@@ -507,4 +550,7 @@ def registerLocalTestData():
     ekeKnowledgeBase.registerTestData('/people/the-strangler.png', _fakeImage)
     ekeKnowledgeBase.registerTestData('/sites/mangled', _mangledSitesRDF)
     ekeKnowledgeBase.registerTestData('/people/empty', _emptyPeopleRDF)
+    ekeKnowledgeBase.registerTestData('/chile/sites', _chileanSiteRDF)
+    ekeKnowledgeBase.registerTestData('/chile/people', _chileanPersonRDF)
+
 

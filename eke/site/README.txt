@@ -1280,6 +1280,24 @@ Apparently if a person moves between sites, you can't manually add any new sites
 No error anymore.
 
 
+Unicode Dammit
+~~~~~~~~~~~~~~
+
+CA-1234 revealed a UnicodeDecodeError from a new EDRN site in Chile::
+
+    >>> browser.open(portalURL + '/annoying-sites')
+    >>> browser.getLink('Edit').click()
+    >>> browser.getControl(name='rdfDataSource').value = 'testscheme://localhost/chile/sites'
+    >>> browser.getControl(name='peopleDataSource').value = 'testscheme://localhost/chile/people'
+    >>> browser.getControl(name='form.button.save').click()
+    >>> browser.getLink('Ingest').click()
+    >>> "We're sorry" in browser.contents
+    False
+
+No error anymore.
+
+
+
 RDF Data Sources
 ~~~~~~~~~~~~~~~~
 

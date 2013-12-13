@@ -16,6 +16,7 @@ from eke.site import ProjectMessageFactory as _
 from eke.site.interfaces import ISite
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from rdflib import URIRef, ConjunctiveGraph, URLInputSource
 from zope.component import queryUtility
 import urlparse, urllib2, mimetypes, socket, smtplib
@@ -201,7 +202,7 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                     site.setPrincipalInvestigator(person)
                     site.piUID = person.UID()
                     person.investigatorStatus = 'pi'
-                    person.setDescription(u'PI, %s, %s' % (person.siteName, person.phone))
+                    person.setDescription(u'PI, %s, %s' % (safe_unicode(person.siteName), safe_unicode(person.phone)))
             for predicateURI, fieldName in (
                 (_coPIPredicateURI, 'coPrincipalInvestigators'),
                 (_coIPredicateURI, 'coInvestigators'),
@@ -270,7 +271,7 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 person = site[site.invokeFactory('Person', objectID)]
                 updateObject(person, uri, predicates, context)
                 person.siteName = site.title
-                person.setDescription(u'Staff, %s, %s' % (person.siteName, person.phone))
+                person.setDescription(u'Staff, %s, %s' % (safe_unicode(person.siteName), safe_unicode(person.phone)))
                 person.memberType = site.memberType
                 if _photoPredicateURI in predicates:
                     url = predicates[_photoPredicateURI][0]
