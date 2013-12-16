@@ -33,9 +33,10 @@ class SetupTest(unittest.TestCase):
             self.failUnless(i in metadata)
     def testTypes(self):
         '''Make sure our types are available.'''
-        types = getToolByName(self.portal, 'portal_types').objectIds()
+        types = getToolByName(self.portal, 'portal_types')
         for i in ('Site Folder', 'Site', 'Person'):
-            self.failUnless(i in types)
+            self.failUnless(i in types.objectIds())
+            self.failIf(types[i].allow_discussion, 'Type "%s" allows discussion but should not' % i)
     def testFacetedNavigation(self):
         '''Ensure we can use facets on site folders'''
         from eke.site.content.sitefolder import SiteFolder
