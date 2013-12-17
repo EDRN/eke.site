@@ -7,8 +7,8 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
-1.1.9 — TBD
------------
+1.1.9 — Let's Not Talk
+----------------------
 
 • CA-1234 - UnicodeDecodeError on person ingest
 • CA-1229 - Discussion re-enabled after upgrade
