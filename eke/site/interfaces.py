@@ -62,6 +62,21 @@ class IPerson(IKnowledgeObject, IImageContent):
         description=_(u'The address at which the person may receive electronic mail.'),
         required=False,
     )
+    mailingAddress = schema.Text(
+        title=_(u'Mailing Address'),
+        description=_(u'The postal address to which mail may be sent.'),
+        required=False,
+    )
+    physicalAddress = schema.Text(
+        title=_(u'Physical Address'),
+        description=_(u'The address where the person is.'),
+        required=False,
+    )
+    shippingAddress = schema.Text(
+        title=_(u'Shipping Address'),
+        description=_(u'The address where parcels destined for the person may be sent.'),
+        required=False,
+    )
     investigatorStatus = schema.TextLine(
         title=_(u'Investigator'),
         description=_(u'Status of this person as an investigator or as a mere staff member.'),
@@ -141,21 +156,6 @@ class ISite(IKnowledgeObject):
     historicalNotes = schema.Text(
         title=_(u'Historical Notes'),
         description=_(u'Various notes made by various individuals within EDRN about this EDRN site.'),
-        required=False,
-    )
-    mailingAddress = schema.Text(
-        title=_(u'Mailing Address'),
-        description=_(u'The postal address to which mail may be sent.'),
-        required=False,
-    )
-    physicalAddress = schema.Text(
-        title=_(u'Physical Address'),
-        description=_(u'The address where the site exists.'),
-        required=False,
-    )
-    shippingAddress = schema.Text(
-        title=_(u'Shipping Address'),
-        description=_(u'The address where parcels destined for the site may be sent.'),
         required=False,
     )
     principalInvestigator = schema.Object(

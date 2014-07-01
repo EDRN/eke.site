@@ -71,6 +71,36 @@ PersonSchema = knowledgeobject.KnowledgeObjectSchema.copy() + atapi.Schema((
         ),
         predicateURI='http://www.w3.org/2001/vcard-rdf/3.0#fax',
     ),
+    atapi.TextField(
+        'mailingAddress',
+        storage=atapi.AnnotationStorage(),
+        required=False,
+        widget=atapi.TextAreaWidget(
+            label=_(u'Mailing Address'),
+            description=_(u'The postal address to which mail may be sent.'),
+        ),
+        predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#mailingAddress',
+    ),
+    atapi.TextField(
+        'physicalAddress',
+        storage=atapi.AnnotationStorage(),
+        required=False,
+        widget=atapi.TextAreaWidget(
+            label=_(u'Physical Address'),
+            description=_(u'The address where the site exists.'),
+        ),
+        predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#physicalAddress',
+    ),
+    atapi.TextField(
+        'shippingAddress',
+        storage=atapi.AnnotationStorage(),
+        required=False,
+        widget=atapi.TextAreaWidget(
+            label=_(u'Shipping Address'),
+            description=_(u'The address where parcels destined for the site may be sent.'),
+        ),
+        predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#shippingAddress',
+    ),
     atapi.StringField(
         'edrnTitle',
         storage=atapi.AnnotationStorage(),
@@ -194,19 +224,22 @@ class Person(knowledgeobject.KnowledgeObject):
     implements(IPerson)
     schema             = PersonSchema
     portal_type        = 'Person'
-    givenName          = atapi.ATFieldProperty('givenName')
-    middleName         = atapi.ATFieldProperty('middleName')
-    surname            = atapi.ATFieldProperty('surname')
-    phone              = atapi.ATFieldProperty('phone')
-    fax                = atapi.ATFieldProperty('fax')
-    edrnTitle          = atapi.ATFieldProperty('edrnTitle')
-    specialty          = atapi.ATFieldProperty('specialty')
-    mbox               = atapi.ATFieldProperty('mbox')
-    investigatorStatus = atapi.ATFieldProperty('investigatorStatus')
-    memberType         = atapi.ATFieldProperty('memberType')
-    siteName           = atapi.ATFieldProperty('siteName')
-    piUID              = atapi.ATFieldProperty('piUID')
     accountName        = atapi.ATFieldProperty('accountName')
+    edrnTitle          = atapi.ATFieldProperty('edrnTitle')
+    fax                = atapi.ATFieldProperty('fax')
+    givenName          = atapi.ATFieldProperty('givenName')
+    investigatorStatus = atapi.ATFieldProperty('investigatorStatus')
+    mailingAddress     = atapi.ATFieldProperty('mailingAddress')
+    mbox               = atapi.ATFieldProperty('mbox')
+    memberType         = atapi.ATFieldProperty('memberType')
+    middleName         = atapi.ATFieldProperty('middleName')
+    phone              = atapi.ATFieldProperty('phone')
+    physicalAddress    = atapi.ATFieldProperty('physicalAddress')
+    piUID              = atapi.ATFieldProperty('piUID')
+    shippingAddress    = atapi.ATFieldProperty('shippingAddress')
+    siteName           = atapi.ATFieldProperty('siteName')
+    specialty          = atapi.ATFieldProperty('specialty')
+    surname            = atapi.ATFieldProperty('surname')
     def _computeTitle(self):
         return generateTitleFromNameComponents((self.surname, self.givenName, self.middleName))
     def tag(self, **kwargs):

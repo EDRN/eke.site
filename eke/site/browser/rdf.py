@@ -120,24 +120,6 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 s.setInvestigators([])
                 # FIXME:
                 # s.manage_delObjects(s.objectIds())
-                # FIXME: Refactor
-                for f, predicateURIs in (
-                    ('mailingAddress', _mailAddrPreds), ('physicalAddress', _physAddrPreds), ('shippingAddress', _shipAddrPreds)
-                ):
-                    mutator = s.getField(f).getMutator(s)
-                    vals = dict(
-                        st1=predicateURIs[0], st2=predicateURIs[1],
-                        city=predicateURIs[2], state=predicateURIs[3], zip=predicateURIs[4],
-                        country=predicateURIs[5]
-                    )
-                    mutator(u'%s\n%s\n%s %s %s\n%s' % (
-                        unicode(predicates.get(vals['st1'], [''])[0]),
-                        unicode(predicates.get(vals['st2'], [''])[0]),
-                        unicode(predicates.get(vals['city'], [''])[0]),
-                        unicode(predicates.get(vals['state'], [''])[0]),
-                        unicode(predicates.get(vals['zip'], [''])[0]),
-                        unicode(predicates.get(vals['country'], [''])[0])
-                    ))
                 created = [CreatedObject(s)]
             else:
                 if len(results) > 1:
@@ -324,27 +306,9 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
 
 class SiteHandler(IngestHandler):
     '''Handler for ``Site`` objects.'''
-    def updateAddress(self, mutator, predicateURIs, predicates):
-        # FIXME: Refactor
-        vals = dict(
-            st1=predicateURIs[0], st2=predicateURIs[1],
-            city=predicateURIs[2], state=predicateURIs[3], zip=predicateURIs[4],
-            country=predicateURIs[5]
-        )
-        mutator(u'%s\n%s\n%s %s %s\n%s' % (
-            unicode(predicates.get(vals['st1'], [''])[0]),
-            unicode(predicates.get(vals['st2'], [''])[0]),
-            unicode(predicates.get(vals['city'], [''])[0]),
-            unicode(predicates.get(vals['state'], [''])[0]),
-            unicode(predicates.get(vals['zip'], [''])[0]),
-            unicode(predicates.get(vals['country'], [''])[0])
-        ))
     def createObjects(self, objectID, title, uri, predicates, statements, context):
         s = context[context.invokeFactory('Site', objectID)]
         updateObject(s, uri, predicates, context)
-        for f, p in (('mailingAddress', _mailAddrPreds), ('physicalAddress', _physAddrPreds), ('shippingAddress', _shipAddrPreds)):
-            mutator = s.getField(f).getMutator(s)
-            self.updateAddress(mutator, p, predicates)
         if _memberTypeURI in predicates and len(predicates[_memberTypeURI]) > 0:
             s.memberType = _transformMemberType(unicode(predicates[_memberTypeURI][0]))
         return [CreatedObject(s)]

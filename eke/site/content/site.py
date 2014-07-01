@@ -121,33 +121,6 @@ SiteSchema = knowledgeobject.KnowledgeObjectSchema.copy() + ATFolder.schema.copy
         ),
         predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#historicalNotes',
     ),
-    atapi.TextField(
-        'mailingAddress',
-        storage=atapi.AnnotationStorage(),
-        required=False,
-        widget=atapi.TextAreaWidget(
-            label=_(u'Mailing Address'),
-            description=_(u'The postal address to which mail may be sent.'),
-        ),
-    ),
-    atapi.TextField(
-        'physicalAddress',
-        storage=atapi.AnnotationStorage(),
-        required=False,
-        widget=atapi.TextAreaWidget(
-            label=_(u'Physical Address'),
-            description=_(u'The address where the site exists.'),
-        ),
-    ),
-    atapi.TextField(
-        'shippingAddress',
-        storage=atapi.AnnotationStorage(),
-        required=False,
-        widget=atapi.TextAreaWidget(
-            label=_(u'Shipping Address'),
-            description=_(u'The address where parcels destined for the site may be sent.'),
-        ),
-    ),
     atapi.ReferenceField(
         'principalInvestigator',
         storage=atapi.AnnotationStorage(),
@@ -270,14 +243,11 @@ class Site(ATFolder, knowledgeobject.KnowledgeObject):
     historicalNotes          = atapi.ATFieldProperty('historicalNotes')
     homePage                 = atapi.ATFieldProperty('homePage')
     investigators            = atapi.ATReferenceFieldProperty('investigators')
-    mailingAddress           = atapi.ATFieldProperty('mailingAddress')
     memberType               = atapi.ATFieldProperty('memberType')
     organs                   = atapi.ATFieldProperty('organs')
-    physicalAddress          = atapi.ATFieldProperty('physicalAddress')
     piUID                    = atapi.ATFieldProperty('piUID')
     principalInvestigator    = atapi.ATReferenceFieldProperty('principalInvestigator')
     proposal                 = atapi.ATFieldProperty('proposal')
-    shippingAddress          = atapi.ATFieldProperty('shippingAddress')
     siteID                   = atapi.ATFieldProperty('siteID')
     specialty                = atapi.ATFieldProperty('specialty')
     sponsor                  = atapi.ATReferenceFieldProperty('sponsor')

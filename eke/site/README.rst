@@ -129,9 +129,6 @@ So, let's create one in our above Site Folder::
     >>> browser.getControl(name='homePage').value = 'http://blackhelicopters.org/'
     >>> browser.getControl(name='memberType').value = 'Biomarker Developmental Laboratories'
     >>> browser.getControl(name='historicalNotes').value = 'Redacted.'
-    >>> browser.getControl(name='mailingAddress').value = 'PO Box 1001, Washington DC 20011'
-    >>> browser.getControl(name='physicalAddress').value = '43 nautical miles so-so-west off the coast of Guam.'
-    >>> browser.getControl(name='shippingAddress').value = "Wrap in waterpoof paper and drop off nearby; we'll get it."
     >>> browser.getControl(name='siteID').value = '123'
     >>> browser.getControl(name='organs:lines').value = 'Anus\nRectum'
     >>> browser.getControl(name='proposal').value = 'Bite me.'
@@ -159,12 +156,6 @@ So, let's create one in our above Site Folder::
     'Biomarker Developmental Laboratories'
     >>> p1.historicalNotes
     'Redacted.'
-    >>> p1.mailingAddress
-    'PO Box 1001, Washington DC 20011'
-    >>> p1.physicalAddress
-    '43 nautical miles so-so-west off the coast of Guam.'
-    >>> p1.shippingAddress
-    "Wrap in waterpoof paper and drop off nearby; we'll get it."
     >>> p1.siteID
     '123'
     >>> p1.organs
@@ -457,6 +448,9 @@ Inside a Site object is just fine::
     >>> browser.getControl(name='fax').value = '+1 575 555 5012'
     >>> browser.getControl(name='edrnTitle').value = 'Mojo Gardener'
     >>> browser.getControl(name='specialty').value = 'Pansies'
+    >>> browser.getControl(name='mailingAddress').value = 'PO Box 3625, Campus Station, Socorro NM 87801'
+    >>> browser.getControl(name='physicalAddress').value = '111 Church Street Socorro NM 87801'
+    >>> browser.getControl(name='shippingAddress').value = "Wrap in waterpoof paper and drop off nearby; we'll get it."
     >>> browser.getControl(name='image_file').add_file(fakeImage, 'image/png', 'fakeImage.png')
     >>> browser.getControl(name='mbox').value = 'mailto:pdm87801@aol.com'
     >>> browser.getControl(name='accountName').value = 'kittyfan7122'
@@ -490,6 +484,12 @@ works::
     'Mojo Gardener'
     >>> pdm.specialty
     'Pansies'
+    >>> pdm.mailingAddress
+    'PO Box 3625, Campus Station, Socorro NM 87801'
+    >>> pdm.physicalAddress
+    '111 Church Street Socorro NM 87801'
+    >>> pdm.shippingAddress
+    "Wrap in waterpoof paper and drop off nearby; we'll get it."
     >>> pdm.mbox
     'mailto:pdm87801@aol.com'
     >>> pdm.accountName
@@ -739,12 +739,6 @@ Ingesting from the two RDF data sources::
     'Silly'
     >>> site.historicalNotes
     'Pre-redacted.'
-    >>> site.mailingAddress
-    '3rd Stall Along\nGrand Central Station\nWashington DC 20011\nUNITED STATES'
-    >>> site.physicalAddress
-    '4th Stall Along\n790 S Marine Corps Dr\nTamuning Guam 96913\nGUAM'
-    >>> site.shippingAddress
-    '5th Stall Along\n1, Celenceau St\nLipza Beirut 7C\nLEBANON'
     >>> site.organs
     ('Anus',)
     >>> site.objectIds()
@@ -770,6 +764,12 @@ Ingesting from the two RDF data sources::
     'Strangulation'
     >>> person.edrnTitle
     'The Strangler'
+    >>> person.mailingAddress
+    '3rd Stall Along\nGrand Central Station\nWashington DC 20011\nUNITED STATES'
+    >>> person.physicalAddress
+    '4th Stall Along\n790 S Marine Corps Dr\nTamuning Guam 96913\nGUAM'
+    >>> person.shippingAddress
+    '5th Stall Along\n1, Celenceau St\nLipza Beirut 7C\nLEBANON'
     >>> person.aq_explicit.piUID == person.UID()
     True
     >>> img = person.getImage()

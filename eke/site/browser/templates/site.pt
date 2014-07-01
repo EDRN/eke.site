@@ -38,15 +38,6 @@
                             <span id='parent-fieldname-memberType' tal:content='structure context/memberType'>Adults Only</span>
                         </div>
                         <div>
-                            <label for='parent-fieldname-mailingAddress' i18n:translate='label_mailingAddress'>
-                                Mailing Address:
-                            </label>
-                            <metal:field use-macro='python:context.widget("mailingAddress", mode="view")'>
-                                PO Box 837
-                                Runaway Bay, Jamaica
-                            </metal:field>
-                        </div>
-                        <div>
                             <label for='parent-fieldname-homePage' i18n:translate='label_homePage'>Home Page:</label>
                             <a href='#' tal:attributes='href context/homePage' 
                                 tal:content='context/homePage'>http://superclubs.com/</a>

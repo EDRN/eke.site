@@ -7,6 +7,12 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
+1.1.11 — TBD
+------------
+
+• CA-1146 - DMCC Ontology Updates (1.8)
+
+
 1.1.10 — I Had Some Chicken; Pass Me the FLOSS
 ----------------------------------------------
 

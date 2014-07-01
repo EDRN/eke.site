@@ -28,6 +28,9 @@ _singlePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
     <_5:fax>+61 2 9355 5556</_5:fax>
     <_4:specialty>Strangulation</_4:specialty>
     <_4:edrnTitle>The Strangler</_4:edrnTitle>
+    <_4:mailingAddress>3rd Stall Along\nGrand Central Station\nWashington DC 20011\nUNITED STATES</_4:mailingAddress>
+    <_4:physicalAddress>4th Stall Along\n790 S Marine Corps Dr\nTamuning Guam 96913\nGUAM</_4:physicalAddress>
+    <_4:shippingAddress>5th Stall Along\n1, Celenceau St\nLipza Beirut 7C\nLEBANON</_4:shippingAddress>
     <_3:img>testscheme://localhost/people/the-strangler.png</_3:img>
   </rdf:Description>
 </rdf:RDF>'''

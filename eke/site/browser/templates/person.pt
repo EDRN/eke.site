@@ -74,7 +74,32 @@
             <label for='parent-fieldname-accountName' i18n:translate='label_accountName'>EDRN Account Name:</label>
             <metal:field use-macro='python:context.widget("accountName", mode="view")'>lolcat1234</metal:field>
         </div>
-        
+        <h3 i18n:translate='heading_addresses'>Addresses</h3>
+        <div>
+            <label for='parent-fieldname-mailingAddress' i18n:translate='label_mailingAddress'>
+                Mailing Address:
+            </label>
+            <metal:field use-macro='python:context.widget("mailingAddress", mode="view")'>
+                PO Box 837
+                Runaway Bay, Jamaica
+            </metal:field>
+        </div>
+        <div>
+            <label for='parent-fieldname-physicalAddress' i18n:translate='label_physicalAddress'>
+                Physical Address:
+            </label>
+            <metal:field use-macro='python:context.widget("physicalAddress", mode="view")'>
+                Somewhere over there
+            </metal:field>
+        </div>
+        <div>
+            <label for='parent-fieldname-shippingAddress' i18n:translate='label_shippingAddress'>
+                Shipping Address:
+            </label>
+            <metal:field use-macro='python:context.widget("shippingAddress", mode="view")'>
+                Just toss it over the wall.
+            </metal:field>
+        </div>
                 <div tal:replace='structure provider:plone.belowcontentbody' />
             </tal:main-macro>
         </metal:main>
