@@ -74,6 +74,14 @@
             <label for='parent-fieldname-accountName' i18n:translate='label_accountName'>EDRN Account Name:</label>
             <metal:field use-macro='python:context.widget("accountName", mode="view")'>lolcat1234</metal:field>
         </div>
+        <div>
+            <label for='parent-fieldname-secureSiteRole' i18n:translate='label_secureSiteRole'>
+                Secure Site Role:
+            </label>
+            <metal:field use-macro='python:context.widget("secureSiteRole", mode="view")'>
+                Janitor
+            </metal:field>
+        </div>        
         <h3 i18n:translate='heading_addresses'>Addresses</h3>
         <div>
             <label for='parent-fieldname-mailingAddress' i18n:translate='label_mailingAddress'>

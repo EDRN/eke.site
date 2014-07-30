@@ -102,7 +102,11 @@ class IPerson(IKnowledgeObject, IImageContent):
         description=_(u'DMCC-assigned account username.'),
         required=False,
     )
-    
+    secureSiteRole = schema.TextLine(
+        title=_(u'Secure Site Role'),
+        description=_(u'What role this person plays at the EDRN Secure Site'),
+        required=False,
+    )
 
 # Pre-declared so that the "sponsor" field works, see below.
 class ISite(IKnowledgeObject):

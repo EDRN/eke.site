@@ -454,6 +454,7 @@ Inside a Site object is just fine::
     >>> browser.getControl(name='image_file').add_file(fakeImage, 'image/png', 'fakeImage.png')
     >>> browser.getControl(name='mbox').value = 'mailto:pdm87801@aol.com'
     >>> browser.getControl(name='accountName').value = 'kittyfan7122'
+    >>> browser.getControl(name='secureSiteRole').value = 'Other Admin Staff'
 
 Notice we haven't set the title.  The object's title should be automatically
 generated from the person's names.  Let's submit this form and see if it
@@ -494,6 +495,8 @@ works::
     'mailto:pdm87801@aol.com'
     >>> pdm.accountName
     'kittyfan7122'
+    >>> pdm.secureSiteRole
+    'Other Admin Staff'
 
 Notice how the last name was formatted?  It uses all of the name fields to
 generate a title.  However, let's make sure that generation works even when
@@ -754,6 +757,8 @@ Ingesting from the two RDF data sources::
     'Pawaka'
     >>> person.investigatorStatus
     'pi'
+    >>> person.secureSiteRole
+    'Co-Investigator'
     >>> person.phone
     '+61 2 9355 5555'
     >>> person.mbox

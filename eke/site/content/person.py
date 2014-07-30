@@ -215,6 +215,17 @@ PersonSchema = knowledgeobject.KnowledgeObjectSchema.copy() + atapi.Schema((
             description=_(u'DMCC-assigned account username. Note that changing this manually has no effect at the DMCC.'),
         ),
     ),
+    atapi.StringField(
+        'secureSiteRole',
+        storage=atapi.AnnotationStorage(),
+        searchable=False,
+        required=False,
+        widget=atapi.StringWidget(
+            label=_(u'Secure Site Role'),
+            description=_(u'Role the person plays on the EDRN Secure Site.')
+        ),
+        predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#secureSiteRole',
+    ),
 ))
 
 finalizeATCTSchema(PersonSchema, folderish=False, moveDiscussion=False)
@@ -239,6 +250,7 @@ class Person(knowledgeobject.KnowledgeObject):
     shippingAddress    = atapi.ATFieldProperty('shippingAddress')
     siteName           = atapi.ATFieldProperty('siteName')
     specialty          = atapi.ATFieldProperty('specialty')
+    secureSiteRole     = atapi.ATFieldProperty('secureSiteRole')
     surname            = atapi.ATFieldProperty('surname')
     def _computeTitle(self):
         return generateTitleFromNameComponents((self.surname, self.givenName, self.middleName))

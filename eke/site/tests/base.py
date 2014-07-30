@@ -32,6 +32,7 @@ _singlePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
     <_4:physicalAddress>4th Stall Along\n790 S Marine Corps Dr\nTamuning Guam 96913\nGUAM</_4:physicalAddress>
     <_4:shippingAddress>5th Stall Along\n1, Celenceau St\nLipza Beirut 7C\nLEBANON</_4:shippingAddress>
     <_3:img>testscheme://localhost/people/the-strangler.png</_3:img>
+    <_4:secureSiteRole>Co-Investigator</_4:secureSiteRole>
   </rdf:Description>
 </rdf:RDF>'''
 
