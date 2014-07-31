@@ -293,11 +293,16 @@ class Site(ATFolder, knowledgeobject.KnowledgeObject):
         investigatorUIDs = frozenset(investigatorUIDs)
         # Ensure investigators are flagged
         for uid in investigatorUIDs:
-            b = members[uid]
-            if b.investigatorStatus != 'investigator' and b.investigatorStatus != 'pi':
-                o = b.getObject()
-                o.investigatorStatus = 'investigator'
-                toReindex.add(o)
+            try:
+                b = members[uid]
+                if b.investigatorStatus != 'investigator' and b.investigatorStatus != 'pi':
+                    o = b.getObject()
+                    o.investigatorStatus = 'investigator'
+                    toReindex.add(o)
+            except KeyError:
+                # Another weird case with DMCC data or people shifting about: an investigator
+                # who's not on the staff list.  Ignore.
+                pass
         # Ensure peons aren't flagged
         for uid in frozenset(members.keys()) - investigatorUIDs:
             b = members[uid]
