@@ -11,6 +11,7 @@ at https://oodt.jpl.nasa.gov/jira/browse/CA.
 ------------
 
 • CA-1146 - DMCC Ontology Updates (1.8)
+• Work-arounds for bad DMCC data
 
 
 1.1.10 — I Had Some Chicken; Pass Me the FLOSS

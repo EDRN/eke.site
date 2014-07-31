@@ -276,9 +276,15 @@ class Site(ATFolder, knowledgeobject.KnowledgeObject):
         piUID = self.getRawPrincipalInvestigator()
         if piUID:
             # The PI gets special treatment and gets everything updated
-            o = members[piUID].getObject()
-            o.investigatorStatus, o.siteName, o.memberType = 'pi', self.title, self.memberType
-            toReindex.add(o)
+            try:
+                o = members[piUID].getObject()
+                o.investigatorStatus, o.siteName, o.memberType = 'pi', self.title, self.memberType
+                toReindex.add(o)
+            except KeyError:
+                # In this weird case, we have a PI who's not also a member, possibly moved
+                # to another institute (or just bad DMCC data).  In that case, the PI is
+                # likely invalid, so clear it.
+                self.setPrincipalInvestigator(None)
         # Now, let's gather all of the UIDs of anyone who's an investigator, just not the illustrious PI.
         investigatorUIDs = []
         investigatorUIDs.extend(self.getRawCoPrincipalInvestigators())  # Such as the co-PIs

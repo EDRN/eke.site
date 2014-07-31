@@ -19,7 +19,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from rdflib import URIRef, ConjunctiveGraph, URLInputSource
 from zope.component import queryUtility
-import urlparse, urllib2, mimetypes, socket, smtplib
+import urlparse, urllib2, mimetypes, socket, smtplib, contextlib
 
 # CA-609: Notification when ingest of unknown sites occurs
 _na      = 'edrninfo@compass.fhcrc.org' # Notification address: whom to notify
@@ -249,7 +249,6 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 objectID = self._generatePersonID(predicates, normalizerFunction)
                 if objectID in site.objectIds():
                     site.manage_delObjects(objectID)
-                title = self._generatePersonTitle(uri, predicates)
                 person = site[site.invokeFactory('Person', objectID)]
                 updateObject(person, uri, predicates, context)
                 person.siteName = site.title
@@ -258,14 +257,12 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 if _photoPredicateURI in predicates:
                     url = predicates[_photoPredicateURI][0]
                     contentType = mimetypes.guess_type(url)[0] or 'image/gif'
-                    con = None
                     try:
-                        con = urllib2.urlopen(url)
-                        field = person.schema['image']
-                        field.set(person, con.read(), content_type=contentType, mimetype=contentType)
-                    finally:
-                        if con is not None:
-                            con.close()
+                        with contextlib.closing(urllib2.urlopen(url)) as con:
+                            field = person.schema['image']
+                            field.set(person, con.read(), content_type=contentType, mimetype=contentType)
+                    except urllib2.HTTPError:
+                        pass
                 person.reindexObject()
                 createdPeople[(site.identifier, uri)] = person
         return createdPeople
