@@ -35,12 +35,12 @@
 				</div>
 		<h4>Contact Information</h4>
 		<table class="contact-info">
-		  <tr>
+		  <tr tal:define='degrees context/degrees; salutation context/salutation'>
 		    <th>Name:</th>
 		    <td>
-			<span tal:replace='context/givenName'>Apu</span>&nbsp;
-			<span tal:replace='context/middleName'>S.</span>&nbsp;
-			<span tal:replace='context/surname'>Nahasapeemapteilon</span>
+            <span tal:condition='salutation' tal:omit-tag=''><span tal:replace='salutation'>Massa</span>&#x00a0;</span><span tal:replace='context/givenName'>Apu</span>&#x00a0;
+			<span tal:replace='context/middleName'>S.</span>&#x00a0;
+			<span tal:replace='context/surname'>Nahasapeemapteilon</span><span tal:condition='degrees' tal:omit-tag=''>&#x00a0; (<span tal:replace='python:u", ".join(degrees)'>BS, MS, PhD</span>)</span>
 		    </td>
 		  </tr>
 		  <tr>

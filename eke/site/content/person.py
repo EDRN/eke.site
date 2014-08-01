@@ -23,6 +23,16 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 PersonSchema = knowledgeobject.KnowledgeObjectSchema.copy() + atapi.Schema((
     atapi.StringField(
+        'salutation',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.StringWidget(
+            label=_(u'Salutation'),
+            description=_(u'Words used to address the person.'),
+        ),
+        required=False,
+        predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#salutation',
+    ),
+    atapi.StringField(
         'givenName',
         storage=atapi.AnnotationStorage(),
         widget=atapi.StringWidget(
@@ -226,6 +236,15 @@ PersonSchema = knowledgeobject.KnowledgeObjectSchema.copy() + atapi.Schema((
         ),
         predicateURI='http://edrn.nci.nih.gov/rdf/schema.rdf#secureSiteRole',
     ),
+    atapi.LinesField(
+        'degrees',
+        required=False,
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.LinesWidget(
+            label=_(u'Degrees'),
+            description=_(u'Academic degrees bestowed on this person'),
+        ),
+    ),
 ))
 
 finalizeATCTSchema(PersonSchema, folderish=False, moveDiscussion=False)
@@ -236,6 +255,7 @@ class Person(knowledgeobject.KnowledgeObject):
     schema             = PersonSchema
     portal_type        = 'Person'
     accountName        = atapi.ATFieldProperty('accountName')
+    degrees            = atapi.ATFieldProperty('degrees')
     edrnTitle          = atapi.ATFieldProperty('edrnTitle')
     fax                = atapi.ATFieldProperty('fax')
     givenName          = atapi.ATFieldProperty('givenName')
@@ -247,6 +267,7 @@ class Person(knowledgeobject.KnowledgeObject):
     phone              = atapi.ATFieldProperty('phone')
     physicalAddress    = atapi.ATFieldProperty('physicalAddress')
     piUID              = atapi.ATFieldProperty('piUID')
+    salutation         = atapi.ATFieldProperty('salutation')
     shippingAddress    = atapi.ATFieldProperty('shippingAddress')
     siteName           = atapi.ATFieldProperty('siteName')
     specialty          = atapi.ATFieldProperty('specialty')

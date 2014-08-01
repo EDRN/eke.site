@@ -21,6 +21,10 @@ _singlePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
   <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/1">
     <_4:site rdf:resource="http://tongue.com/clinic/3d"/>
     <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_4:salutation>Bootyful</_4:salutation>
+    <_4:degree1>Ph.D.</_4:degree1>
+    <_4:degree2>MPH</_4:degree2>
+    <_4:degree3>Disco Studies</_4:degree3>
     <_3:surname>Pawaka</_3:surname>
     <_3:givenname>Makin</_3:givenname>
     <_3:phone>+61 2 9355 5555</_3:phone>

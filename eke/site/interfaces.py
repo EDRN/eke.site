@@ -22,6 +22,11 @@ class ISiteFolder(IKnowledgeFolder):
     
 class IPerson(IKnowledgeObject, IImageContent):
     '''Person.'''
+    salutation = schema.TextLine(
+        title=_(u'Saluation'),
+        description=_(u'Words used to address the person.'),
+        required=False,
+    )
     givenName = schema.TextLine(
         title=_(u'Given Name'),
         description=_(u'The name given to the person at birth and is usually considered the "first" name in Western societies.'),
@@ -106,6 +111,12 @@ class IPerson(IKnowledgeObject, IImageContent):
         title=_(u'Secure Site Role'),
         description=_(u'What role this person plays at the EDRN Secure Site'),
         required=False,
+    )
+    degrees = schema.List(
+        title=_(u'Degrees'),
+        description=_(u'Academic degrees bestowed upon this person'),
+        required=False,
+        value_type=schema.TextLine(title=_(u'Degree'), description=_(u'Academic degree bestowed upon this person'))
     )
 
 # Pre-declared so that the "sponsor" field works, see below.

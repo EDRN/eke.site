@@ -441,6 +441,7 @@ Inside a Site object is just fine::
     >>> l.click()
     >>> browser.getControl(name='description').value = 'The gardener of the east grounds.'
     >>> browser.getControl(name='identifier').value = 'http://my.house/staff/3'
+    >>> browser.getControl(name='salutation').value = 'Senor'
     >>> browser.getControl(name='givenName').value = 'Prospero'
     >>> browser.getControl(name='middleName').value = 'Diego'
     >>> browser.getControl(name='surname').value = 'Montoya'
@@ -471,6 +472,8 @@ works::
     'http://my.house/staff/3'
     >>> pdm.description
     'The gardener of the east grounds.'
+    >>> pdm.salutation
+    'Senor'
     >>> pdm.givenName
     'Prospero'
     >>> pdm.middleName
@@ -751,6 +754,12 @@ Ingesting from the two RDF data sources::
     'Pawaka, Makin'
     >>> person.description
     "Investigator, Dr Tongue's 3D Clinic, +61 2 9355 5555"
+    >>> person.salutation
+    'Bootyful'
+    >>> degrees = list(person.degrees)
+    >>> degrees.sort()
+    >>> degrees
+    ['Disco Studies', 'MPH', 'Ph.D.']
     >>> person.givenName
     'Makin'
     >>> person.surname

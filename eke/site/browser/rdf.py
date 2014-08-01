@@ -69,6 +69,7 @@ _siteTypeURI              = URIRef('http://edrn.nci.nih.gov/rdf/types.rdf#Site')
 _siteURI                  = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#site')
 _sponsorPredURI           = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#sponsor')
 _surnamePredicateURI      = URIRef('http://xmlns.com/foaf/0.1/surname')
+_degreePredicateURIPrefix = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#degree')
 
 def _transformMemberType(memberType):
     '''Transform a potentially bad member type from the DMCC into a good, clean member type'''
@@ -254,6 +255,14 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 person.siteName = site.title
                 person.setDescription(u'Staff, %s, %s' % (safe_unicode(person.siteName), safe_unicode(person.phone)))
                 person.memberType = site.memberType
+                degrees = []
+                for degreePredicateURI in [URIRef(_degreePredicateURIPrefix + unicode(i)) for i in range(1, 4)]:
+                    if degreePredicateURI in predicates:
+                        degree = unicode(predicates[degreePredicateURI][0])
+                        degree.strip()
+                        if degree:
+                            degrees.append(degree)
+                person.setDegrees(degrees)
                 if _photoPredicateURI in predicates:
                     url = predicates[_photoPredicateURI][0]
                     contentType = mimetypes.guess_type(url)[0] or 'image/gif'
