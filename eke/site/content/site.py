@@ -329,6 +329,13 @@ def SiteVocabularyFactory(context):
     # TODO: filter by review_state?
     results = catalog(object_provides=ISite.__identifier__, sort_on='sortable_title')
     items = [(u'%s (%s)' % (i.Title, i.siteID), i.UID) for i in results]
+    # items = []
+    # for i in results:
+    #     try:
+    #         formatted = u'%s (%s)' % (i.Title, i.siteID)
+    #         items.append((formatted, i.UID))
+    #     except UnicodeDecodeError:
+    #         import pdb;pdb.set_trace()
     return SimpleVocabulary.fromItems(items)
 directlyProvides(SiteVocabularyFactory, IVocabularyFactory)
 
