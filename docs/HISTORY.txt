@@ -7,6 +7,12 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
+1.1.12 — TBD
+------------
+
+• CA-1300
+
+
 1.1.11 — Bad Data! Bad, bad!
 ----------------------------
 

@@ -20,6 +20,7 @@ from Products.validation import V_REQUIRED
 from zope.interface import implements, directlyProvides
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope.component import queryUtility
 
 PersonSchema = knowledgeobject.KnowledgeObjectSchema.copy() + atapi.Schema((
     atapi.StringField(
@@ -323,22 +324,21 @@ def PersonVocabularyFactory(context):
     results = catalog(object_provides=IPerson.__identifier__)
     items = {}
     for i in results:
-        key = u'%s (%s)' % (i.Title, i.siteID)
+        key = u'%s (%s)' % (i.Title.decode('utf-8'), i.siteID.decode('utf-8'))
         uids = items.get(key, [])
         uids.append(i.UID)
         items[key] = uids
     items = items.items()
     items.sort(lambda a, b: cmp(a[0], b[0]))
-    vocabTokens = []
+    terms = []
     for key, uids in items:
         if len(uids) == 1:
-            vocabTokens.append((key, uids[0]))
+            terms.append(SimpleVocabulary.createTerm(uids[0], uids[0], key))
         else:
-            counter = 0
-            for uid in uids:
-                counter += 1
-                vocabTokens.append((u'%s [%d]' % (key, counter), uid))
-    return SimpleVocabulary.fromItems(vocabTokens)
+            for counter, uid in enumerate(uids):
+                newKey = u'{} [{}]'.format(key, counter+1)
+                terms.append(SimpleVocabulary.createTerm(uid, uid, newKey))
+    return SimpleVocabulary(terms)
 directlyProvides(PersonVocabularyFactory, IVocabularyFactory)
 
 def PersonVocabularyWithNoReferenceFactory(context):
@@ -353,21 +353,21 @@ def PrincipalInvestigatorVocabularyFactory(context):
     results = catalog(object_provides=IPerson.__identifier__, investigatorStatus='pi')
     items = {}
     for i in results:
-        if i.Title not in items:
-            items[i.Title] = []
-        uidsForName = items[i.Title]
+        name = i.Title.decode('utf-8')
+        if name not in items:
+            items[name] = []
+        uidsForName = items[name]
         uidsForName.append(i.UID)
     terms = []
     for name, uids in items.iteritems():
         if len(uids) == 1:
-            terms.append((name, uids[0]))
+            terms.append(SimpleVocabulary.createTerm(uids[0], uids[0], name))
         elif len(uids) > 1:
-            index = 1
-            for uid in uids:
-                terms.append((u'%s (%d)' % (name, index), uid))
-                index += 1
+            for index, uid in enumerate(uids, start=1):
+                numberedName = u'{} ({})'.format(name, index)
+                terms.append(SimpleVocabulary.createTerm(uid, uid, numberedName))
     terms.sort()
-    return SimpleVocabulary.fromItems(terms)
+    return SimpleVocabulary(terms)
 directlyProvides(PrincipalInvestigatorVocabularyFactory, IVocabularyFactory)
 
 def NotPeonsVocabularyFactory(context):

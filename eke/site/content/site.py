@@ -312,8 +312,9 @@ class Site(ATFolder, knowledgeobject.KnowledgeObject):
                 toReindex.add(o)
         # Now make sure everyone's got the right site name, member type, and piUID
         toUpdate = [
-            b for b in members.values() if b.siteName != self.title or b.memberType != self.memberType or b.piUID != self.piUID
+            b for b in members.values() if b.siteName.decode('utf-8') != self.title or b.memberType.decode('utf-8') != self.memberType or b.piUID != self.piUID
         ]
+
         for b in toUpdate:
             o = b.getObject()
             o.siteName, o.memberType, o.piUID = self.title, self.memberType, self.piUID
@@ -328,15 +329,11 @@ def SiteVocabularyFactory(context):
     catalog = getToolByName(context, 'portal_catalog')
     # TODO: filter by review_state?
     results = catalog(object_provides=ISite.__identifier__, sort_on='sortable_title')
-    items = [(u'%s (%s)' % (i.Title, i.siteID), i.UID) for i in results]
-    # items = []
-    # for i in results:
-    #     try:
-    #         formatted = u'%s (%s)' % (i.Title, i.siteID)
-    #         items.append((formatted, i.UID))
-    #     except UnicodeDecodeError:
-    #         import pdb;pdb.set_trace()
-    return SimpleVocabulary.fromItems(items)
+    terms = []
+    for i in results:
+        displayString = u'{} ({})'.format(i.Title.decode('utf-8'), i.siteID.decode('utf-8'))
+        terms.append(SimpleVocabulary.createTerm(i.UID, i.UID, displayString))    
+    return SimpleVocabulary(terms)
 directlyProvides(SiteVocabularyFactory, IVocabularyFactory)
 
 def SiteVocabularyWithNoReferenceFactory(context):
@@ -349,16 +346,21 @@ directlyProvides(SiteVocabularyWithNoReferenceFactory, IVocabularyFactory)
 def SiteNamesVocabularyFactory(context):
     catalog = getToolByName(context, 'portal_catalog')
     # TODO: filter by review_state?
+    class _Site(object):
+        def __init__(self, uid, name):
+            self.uid, self.name = uid, name
+        def __cmp__(self, other):
+            return cmp(self.name, other.name)
     results = catalog(object_provides=ISite.__identifier__)
-    siteNames = frozenset([(i.Title, i.Title) for i in results])
-    siteNames = list(siteNames)
-    siteNames.sort()
-    return SimpleVocabulary.fromItems(siteNames)
+    sites = frozenset([_Site(i.UID, i.Title.decode('utf-8')) for i in results])
+    sites = list(sites)
+    sites.sort()
+    return SimpleVocabulary([SimpleVocabulary.createTerm(i.uid, i.uid, i.name) for i in sites])
 directlyProvides(SiteNamesVocabularyFactory, IVocabularyFactory)
 
 def MemberTypeVocabularyFactory(context):
     catalog = getToolByName(context, 'portal_catalog')
-    memberTypes = [(i, i) for i in catalog.uniqueValuesFor('memberType')]
+    memberTypes = [(i.decode('utf-8'), i.decode('utf-8')) for i in catalog.uniqueValuesFor('memberType')]
     memberTypes.sort()
     return SimpleVocabulary.fromItems(memberTypes)
 directlyProvides(MemberTypeVocabularyFactory, IVocabularyFactory)

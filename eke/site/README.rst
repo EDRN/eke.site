@@ -182,7 +182,7 @@ sponsored by our first site::
     >>> browser.getControl(name='title').value = 'Platform Two'
     >>> browser.getControl(name='identifier').value = 'http://cia.gov/edrn/p2'
     >>> browser.getControl(name='memberType').value = 'Biomarker Reference Laboratories'
-    >>> browser.getControl('Platform One').selected = True
+    >>> browser.getControl('Platform One (123)').selected = True
     >>> browser.getControl(name='form.button.save').click()
     >>> p2 = f['platform-two']
     >>> p2.sponsor.title
