@@ -7,8 +7,8 @@ about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 
-1.1.12 — TBD
-------------
+1.1.12 — Bug Fixes
+------------------
 
 • CA-1300
 
