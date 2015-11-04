@@ -71,10 +71,6 @@
 		    <metal:field use-macro='python:context.widget("specialty", mode="view")'>Poobahing.</metal:field>
 		</div>
         <div>
-            <label for='parent-fieldname-accountName' i18n:translate='label_accountName'>EDRN Account Name:</label>
-            <metal:field use-macro='python:context.widget("accountName", mode="view")'>lolcat1234</metal:field>
-        </div>
-        <div>
             <label for='parent-fieldname-secureSiteRole' i18n:translate='label_secureSiteRole'>
                 Secure Site Role:
             </label>
