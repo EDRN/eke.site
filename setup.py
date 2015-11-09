@@ -31,6 +31,7 @@ _externalRequirements = [
     'Products.CMFPlone',
     'zope.globalrequest',
     'z3c.autoinclude',
+    'lxml',
 ]
 _classifiers = [
     'Development Status :: 4 - Beta',
