@@ -571,12 +571,14 @@ study (who happens to be the PI).  However, let's put things back to normal now:
     >>> browser.getControl(name='principalInvestigator:list').displayValue = ['<no reference>']
     >>> browser.getControl(name='form.button.save').click()
 
-Notice this as well: Mr Montoya's object ID was set to his account name.  This
-is new::
+Notice this as well: Mr Montoya's object ID was set to his account name.
+However, we don't want to show the account name on the view template::
 
     >>> browser.open(portalURL + '/questionable-sites/platform-one/kittyfan7122')
-    >>> browser.contents
-    '...Montoya...Account Name...kittyfan7122...'
+    >>> 'Account Name' in browser.contents
+    False
+
+Good.
 
 But not everyone in EDRN has an account name.  What happens then?  Take a
 look::

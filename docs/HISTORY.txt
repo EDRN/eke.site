@@ -11,6 +11,7 @@ at https://oodt.jpl.nasa.gov/jira/browse/CA.
 ------------
 
 • Added lxml as a dependency
+• Removed display of "Account Name" on person's view template
 
 
 1.1.12 — Bug Fixes
