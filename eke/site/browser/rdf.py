@@ -38,7 +38,6 @@ _coPIPredicateURI         = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#copi'
 _dcTitleURI               = URIRef(dublincore.TITLE_URI)
 _givenNamePredicateURI    = URIRef('http://xmlns.com/foaf/0.1/givenname')
 _investigatorPredicateURI = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#investigator')
-_accountNamePredURI       = URIRef('http://xmlns.com/foaf/0.1/accountName')
 _ma1PredURI               = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#mailAddr1')
 _ma2PredURI               = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#mailAddr2')
 _maCityPredURI            = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#mailCity')

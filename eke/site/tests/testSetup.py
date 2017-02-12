@@ -23,8 +23,8 @@ class SetupTest(unittest.TestCase):
         '''Check if indexes are properly installed.'''
         catalog = getToolByName(self.portal, 'portal_catalog')
         indexes = catalog.indexes()
-        for i in ('memberType', 'siteID', 'piUID', 'investigatorStatus', 'organs', 'proposal'):
-            self.failUnless(i in indexes)
+        for i in ('memberType', 'siteID', 'piUID', 'investigatorStatus', 'organs', 'proposal', 'accountName'):
+            self.failUnless(i in indexes, i + ' index is missing')
     def testCatalogMetadata(self):
         '''Check if indexed metadata schema are properly installed.'''
         catalog = getToolByName(self.portal, 'portal_catalog')

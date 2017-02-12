@@ -5,6 +5,8 @@
 '''EKE Site: initialization.
 '''
 
+DEFAULT_PROFILE_ID = 'profile-eke.site:default'
+
 from zope.i18nmessageid import MessageFactory
 
 ProjectMessageFactory = MessageFactory('eke.site')
@@ -12,6 +14,7 @@ ProjectMessageFactory = MessageFactory('eke.site')
 from eke.site import config
 from Products.Archetypes import atapi
 import Products.CMFCore
+
 
 def initialize(context):
     '''Initializer called when used as a Zope 2 product.'''
@@ -24,4 +27,3 @@ def initialize(context):
             permission=config.ADD_PERMISSIONS[atype.portal_type],
             extra_constructors=(constructor,)
         ).initialize(context)
-    

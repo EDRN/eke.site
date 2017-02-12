@@ -225,6 +225,7 @@ PersonSchema = knowledgeobject.KnowledgeObjectSchema.copy() + atapi.Schema((
             label=_(u'Account Name'),
             description=_(u'DMCC-assigned account username. Note that changing this manually has no effect at the DMCC.'),
         ),
+        predicateURI='http://xmlns.com/foaf/0.1/accountName',
     ),
     atapi.StringField(
         'secureSiteRole',
