@@ -11,16 +11,19 @@
     </head>
     <body>
         <metal:main fill-slot='main'>
-            <tal:main-macro metal:define-macro='main'>
+            <tal:main-macro metal:define-macro='main' tal:define='bespokeURL view/bespokeURL|nothing'>
                 <div tal:replace='structure provider:plone.abovecontenttitle' />
                 <h1 class='documentFirstHeading'>
                     <metal:field use-macro='python:context.widget("title", mode="view")'>
                         Title
                     </metal:field>
                 </h1>
-		<span tal:condition='context/edrnTitle'>
-		    Title:  <metal:field use-macro='python:context.widget("edrnTitle", mode="view")'>Principle Investigator</metal:field>
-		</span>
+
+                <p tal:condition='bespokeURL'>
+                    &#x2757;&#x00a0;This person has their own custom page.
+                    &#x25b6;&#x00a0;<a href='#' tal:attributes='href bespokeURL'>Take a look</a>.
+                </p>
+
                 <div tal:replace='structure provider:plone.belowcontenttitle' />
                 <p class='documentDescription'>
                     <metal:field use-macro='python:context.widget("description", mode="view")'>Description.</metal:field>
@@ -53,12 +56,6 @@
 		    <th>Fax:</th>
 		    <td>
 			<span tal:replace='context/fax'>+1 555 555 1212</span>
-		    </td>
-		  </tr>
-		  <tr>
-		    <th>Email:</th>
-		    <td>
-				<a href='#' tal:attributes='href context/mbox' tal:content='context/mbox'>apu69@aol.com</a>
 		    </td>
 		  </tr>
 		</table>	

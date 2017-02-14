@@ -14,7 +14,7 @@ from plone.memoize.instance import memoize
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
-import logging
+import logging, plone.api
 
 _logger = logging.getLogger('Plone')
 
@@ -270,3 +270,15 @@ class SiteView(KnowledgeObjectView):
 class PersonView(KnowledgeObjectView):
     '''Default view of a Person.'''
     __call__ = ViewPageTemplateFile('templates/person.pt')
+    @memoize
+    def bespokeURL(self):
+        context = aq_inner(self.context)
+        portal = plone.api.portal.get()
+        if 'member-pages' not in portal.keys(): return None
+        memberPages = portal['member-pages']
+        if context.accountName not in memberPages.keys(): return None
+        memberPage = memberPages[context.accountName]
+        state = plone.api.content.get_state(obj=memberPage)
+        if state == 'private': return None
+        return memberPage.absolute_url()
+

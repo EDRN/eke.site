@@ -32,6 +32,7 @@ _externalRequirements = [
     'zope.globalrequest',
     'z3c.autoinclude',
     'lxml',
+    'plone.api',
 ]
 _classifiers = [
     'Development Status :: 4 - Beta',
