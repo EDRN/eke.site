@@ -623,18 +623,6 @@ the mysterious "FWA" number) removed.  Are they gone?  Let's check::
 Lookin' good.
 
 
-Increasing Spammability
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Issue CA-557 wants email addresses appearing on the portal to be clickable::
-
-    >>> browser.open(portalURL + '/questionable-sites/platform-one/kittyfan7122')
-    >>> browser.contents
-    '...Email:...<a href="mailto:pdm87801@aol.com">mailto:pdm87801@aol.com</a>...'
-    
-If you're a typical browser, then that almost certainly looks clickable to you.
-
-
 Staff Listings
 ~~~~~~~~~~~~~~
 
