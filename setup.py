@@ -31,6 +31,7 @@ _externalRequirements = [
     'Products.CMFPlone',
     'zope.globalrequest',
     'z3c.autoinclude',
+    'eke.study',
     'lxml',
     'plone.api',
 ]

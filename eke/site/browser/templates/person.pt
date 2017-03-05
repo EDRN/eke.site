@@ -11,18 +11,17 @@
     </head>
     <body>
         <metal:main fill-slot='main'>
-            <tal:main-macro metal:define-macro='main' tal:define='bespokeURL view/bespokeURL|nothing'>
+            <tal:main-macro metal:define-macro='main' tal:define='
+                protocols view/protocols;
+                onProtocols python:protocols[0];
+                offProtocols python:protocols[1];
+            '>
                 <div tal:replace='structure provider:plone.abovecontenttitle' />
                 <h1 class='documentFirstHeading'>
                     <metal:field use-macro='python:context.widget("title", mode="view")'>
                         Title
                     </metal:field>
                 </h1>
-
-                <p tal:condition='bespokeURL'>
-                    &#x2757;&#x00a0;This person has their own custom page.
-                    &#x25b6;&#x00a0;<a href='#' tal:attributes='href bespokeURL'>Take a look</a>.
-                </p>
 
                 <div tal:replace='structure provider:plone.belowcontenttitle' />
                 <p class='documentDescription'>
@@ -74,7 +73,106 @@
             <metal:field use-macro='python:context.widget("secureSiteRole", mode="view")'>
                 Janitor
             </metal:field>
-        </div>        
+        </div>
+        <p style='margin-top: 1em;' class='discreet'>To update contact information, please visit the
+            <a href='https://www.compass.fhcrc.org/enterEDRN'>Data Management and Coordinating Center</a>.
+        </p>
+
+        <h2 i18n:translate='bespokeActiveProtocols'>My Protocols</h2>
+
+        <p class='discreet' tal:condition='not:onProtocols' i18n:translate='bespokeNoProtocols'>
+            I'm not participating in any protocols right now.
+        </p>
+
+        <table class='listing' tal:condition='onProtocols'>
+            <thead>
+                <tr>
+                    <th i18n:translate='bespokeProtocolName'>Protocol Name</th>
+                    <th i18n:translate='bespokeProtocolBiomarkers'>Biomarkers</th>
+                    <th i18n:translate='bespokeProtocolDatasets'>Datasets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tal:repeat repeat='protocol onProtocols'>
+                    <tr tal:define='oddRow repeat/protocol/odd' class='odd'
+                        tal:attributes='class python:"odd" if oddRow else "even"'>
+                        <td>
+                            <a href='#' title='Yeah, really nice protocol.' tal:content='protocol/title'
+                                tal:attributes='
+                                href protocol/absolute_url;
+                                title protocol/description;
+                            '>
+                                A Methylation Protocol Again
+                            </a>
+                        </td>
+                        <td style='text-align: right;' tal:define='numBio python:len(protocol.biomarkers)'>
+                            <span tal:condition='not:numBio' tal:omit-tag=''>0</span>
+                            <a href='#' tal:condition='numBio' tal:content='numBio'
+                                tal:attributes='href string:${protocol/absolute_url}#biomarkers'>
+                                123
+                            </a>
+                        </td>
+                        <td style='text-align: right;' tal:define='numData python:len(protocol.datasets)'>
+                            <span tal:condition='not:numData' ta:omit-tag=''>0</span>
+                            <a href='#' tal:condition='numData' tal:content='numData'
+                                tal:attributes='href string:${protocol/absolute_url}#datasets'>
+                                456
+                            </a>
+                        </td>
+                    </tr>
+                </tal:repeat>
+            </tbody>
+        </table>
+
+        <h2 i18n:translate='bespokeInactiveProtocols'>My Inactive Protocols</h2>
+        <p class='discreet' tal:condition='not:offProtocols' i18n:translate='bespokeNoInactiveProtocols'>
+            I don't have any past protocols. Whew!
+        </p>
+
+        <table class='listing' tal:condition='offProtocols'>
+            <thead>
+                <tr>
+                    <th i18n:translate='bespokeProtocolName'>Protocol Name</th>
+                    <th i18n:translate='bespokeProtocolBiomarkers'>Biomarkers</th>
+                    <th i18n:translate='bespokeProtocolDatasets'>Datasets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tal:repeat repeat='protocol offProtocols'>
+                    <tr tal:define='oddRow repeat/protocol/odd' class='odd'
+                        tal:attributes='class python:"odd" if oddRow else "even"'>
+                        <td>
+                            <a href='#' title='Yeah, really nice protocol.' tal:content='protocol/title'
+                                tal:attributes='
+                                href protocol/absolute_url;
+                                title protocol/description;
+                            '>
+                                A Methylation Protocol Again
+                            </a>
+                        </td>
+                        <td style='text-align: right;' tal:define='numBio python:len(protocol.biomarkers)'>
+                            <span tal:condition='not:numBio' tal:omit-tag=''>0</span>
+                            <a href='#' tal:condition='numBio' tal:content='numBio'
+                                tal:attributes='href string:${protocol/absolute_url}#biomarkers'>
+                                123
+                            </a>
+                        </td>
+                        <td style='text-align: right;' tal:define='numData python:len(protocol.datasets)'>
+                            <span tal:condition='not:numData' ta:omit-tag=''>0</span>
+                            <a href='#' tal:condition='numData' tal:content='numData'
+                                tal:attributes='href string:${protocol/absolute_url}#datasets'>
+                                456
+                            </a>
+                        </td>
+                    </tr>
+                </tal:repeat>
+            </tbody>
+        </table>
+
+        <p class='discreet'>To update protocols, biomarkers, or science data, please contact the
+            <a href='mailto:ic-portal@jpl.nasa.gvo'>Informatics Center</a>.
+        </p>
+
         <h3 i18n:translate='heading_addresses'>Addresses</h3>
         <div>
             <label for='parent-fieldname-mailingAddress' i18n:translate='label_mailingAddress'>
@@ -101,6 +199,10 @@
                 Just toss it over the wall.
             </metal:field>
         </div>
+        <p style='margin-top: 1em;' class='discreet'>To update addresses, please visit the
+            <a href='https://www.compass.fhcrc.org/enterEDRN'>Data Management and Coordinating Center</a>.
+        </p>
+
                 <div tal:replace='structure provider:plone.belowcontentbody' />
             </tal:main-macro>
         </metal:main>

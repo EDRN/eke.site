@@ -9,6 +9,7 @@ EKE Sites: views for content types.
 from Acquisition import aq_inner
 from eke.knowledge.browser.views import KnowledgeFolderView, KnowledgeObjectView
 from eke.site.interfaces import ISite, ISiteFolder, IPerson
+from eke.study.interfaces import IProtocol
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.instance import memoize
 from Products.CMFCore.utils import getToolByName
@@ -31,6 +32,7 @@ _edrnSiteTypes = frozenset((
     u'SPOREs',
 ))
 
+
 class SiteFolderView(KnowledgeFolderView):
     '''Default view of a Site folder.'''
     __call__ = ViewPageTemplateFile('templates/sitefolder.pt')
@@ -39,25 +41,24 @@ class SiteFolderView(KnowledgeFolderView):
     def _sortBySiteName(self, sitesList):
         sitesList.sort(lambda a, b: cmp(a['title'], b['title']))
     def _transformTypeName(self, memberType):
-        if memberType.startswith(u'Associate Member C') or memberType.startswith(u'Assocaite Member C'): # Thanks, DMCC
+        if memberType.startswith(u'Associate Member C') or memberType.startswith(u'Assocaite Member C'):  # Thanks, DMCC
             return u'Associate Member C'
         elif memberType.startswith(u'Associate Member B'):
             return u'Associate Member B'
         elif memberType == u'Clinical Validation Center':
-            return u'Clinical Validation Centers' # CA-680
+            return u'Clinical Validation Centers'  # CA-680
         elif memberType == u'SPORE':
-            return u'SPOREs' # CA-697
+            return u'SPOREs'  # CA-697
         else:
             return unicode(memberType)
     @memoize
     def biomarkerDevelopmentalLaboratories(self):
         context = aq_inner(self.context)
         catalog, uidCatalog = getToolByName(context, 'portal_catalog'), getToolByName(context, 'uid_catalog')
-        normalizerFunction = getUtility(IIDNormalizer).normalize
         results = catalog(
             object_provides=ISite.__identifier__,
             path=dict(query='/'.join(context.getPhysicalPath()), depth=1),
-            memberType=(u'Biomarker Developmental Laboratories', u'Biomarker Developmental  Laboratories') # Thanks, DMCC
+            memberType=(u'Biomarker Developmental Laboratories', u'Biomarker Developmental  Laboratories')  # Thanks, DMCC
         )
         byOrgan = {}
         for brain in results:
@@ -179,7 +180,6 @@ class SiteFolderView(KnowledgeFolderView):
         context = aq_inner(self.context)
         catalog = getToolByName(context, 'portal_catalog')
         uidCatalog = getToolByName(context, 'uid_catalog')
-        normalizerFunction = getUtility(IIDNormalizer).normalize
         results = catalog(
             object_provides=ISite.__identifier__,
             path=dict(query='/'.join(context.getPhysicalPath()), depth=1),
@@ -220,6 +220,7 @@ class SiteFolderView(KnowledgeFolderView):
         )
         return [dict(title=i.Title, description=i.Description, url=i.getURL()) for i in results]
 
+
 class SiteView(KnowledgeObjectView):
     '''Default view of a site.'''
     __call__ = ViewPageTemplateFile('templates/site.pt')
@@ -255,15 +256,15 @@ class SiteView(KnowledgeObjectView):
         if not memberType:
             return False
         memberType = memberType.strip()
-        return memberType.startswith('Associate') or memberType.startswith('Assocaite') # Thanks, DMCC. Ugh. >_<
+        return memberType.startswith('Associate') or memberType.startswith('Assocaite')  # Thanks, DMCC. Ugh. >_<
     def showOrgans(self):
         '''Should we show our organs of interest?'''
         context = aq_inner(self.context)
         return context.memberType in (
             u'Biomarker Developmental Laboratories',
-            u'Biomarker Developmental  Laboratories', # Thanks, DMCC.
+            u'Biomarker Developmental  Laboratories',  # Thanks, DMCC.
             u'Clinical Validation Center',
-            u'Clinical Validation Centers', # CA-680
+            u'Clinical Validation Centers',  # CA-680
         )
 
 
@@ -281,4 +282,20 @@ class PersonView(KnowledgeObjectView):
         state = plone.api.content.get_state(obj=memberPage)
         if state == 'private': return None
         return memberPage.absolute_url()
-
+    @memoize
+    def protocols(self):
+        context = aq_inner(self.context)
+        catalog = plone.api.portal.get_tool('portal_catalog')
+        results = catalog(
+            object_provides=IProtocol.__identifier__,
+            sort_on='sortable_title',
+            piUID=context.piUID
+        )
+        actives, inactives = [], []
+        for i in results:
+            protocol = i.getObject()
+            if protocol.finishDate:
+                inactives.append(protocol)
+            else:
+                actives.append(protocol)
+        return actives, inactives
