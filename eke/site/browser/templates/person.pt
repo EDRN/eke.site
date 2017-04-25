@@ -17,14 +17,13 @@
                 offProtocols python:protocols[1];
             '>
                 <div tal:replace='structure provider:plone.abovecontenttitle' />
-                <h1 class='documentFirstHeading'>
-                    <metal:field use-macro='python:context.widget("title", mode="view")'>
-                        Title
-                    </metal:field>
+                <h1 tal:define='degrees context/degrees' class='documentFirstHeading'>
+                    <span tal:omit-tag='' tal:content='context/title'>Blow, Joe</span>
+                    <span tal:condition='degrees' tal:omit-tag=''>(<span tal:replace='python:u", ".join(degrees)'>BS, MS, PhD</span>)</span>
                 </h1>
 
                 <div tal:replace='structure provider:plone.belowcontenttitle' />
-                <p class='documentDescription'>
+                <p>
                     <metal:field use-macro='python:context.widget("description", mode="view")'>Description.</metal:field>
                 </p>
                 <div tal:replace='structure provider:plone.abovecontentbody' />
@@ -36,21 +35,13 @@
 					</a>
 				</div>
 		<h4>Contact Information</h4>
-		<table class="contact-info">
-		  <tr tal:define='degrees context/degrees; salutation context/salutation'>
-		    <th>Name:</th>
-		    <td>
-            <span tal:condition='salutation' tal:omit-tag=''><span tal:replace='salutation'>Massa</span>&#x00a0;</span><span tal:replace='context/givenName'>Apu</span>&#x00a0;
-			<span tal:replace='context/middleName'>S.</span>&#x00a0;
-			<span tal:replace='context/surname'>Nahasapeemapteilon</span><span tal:condition='degrees' tal:omit-tag=''>&#x00a0; (<span tal:replace='python:u", ".join(degrees)'>BS, MS, PhD</span>)</span>
-		    </td>
-		  </tr>
-		  <tr>
-		    <th>Telephone:</th>
-		    <td>
-			<span tal:replace='context/phone'>+1 555 555 1212</span>
-		    </td>
-		  </tr>
+		<table class="contact-info" tal:define='mbox context/mbox'>
+            <tr tal:condition='mbox'>
+                <th>Email:</th>
+                <td>
+                    <a href='#' tal:attributes='href mbox' tal:content='mbox'>mailto:joe@blow</a>
+                </td>
+            </tr>
 		  <tr>
 		    <th>Fax:</th>
 		    <td>
@@ -66,19 +57,11 @@
 		    <label for='parent-fieldname-specialty' i18n:translate='label_specialty'>Specialty:</label>
 		    <metal:field use-macro='python:context.widget("specialty", mode="view")'>Poobahing.</metal:field>
 		</div>
-        <div>
-            <label for='parent-fieldname-secureSiteRole' i18n:translate='label_secureSiteRole'>
-                Secure Site Role:
-            </label>
-            <metal:field use-macro='python:context.widget("secureSiteRole", mode="view")'>
-                Janitor
-            </metal:field>
-        </div>
         <p style='margin-top: 1em;' class='discreet'>To update contact information, please visit the
             <a href='https://www.compass.fhcrc.org/enterEDRN'>Data Management and Coordinating Center</a>.
         </p>
 
-        <h2 i18n:translate='bespokeActiveProtocols'>My Protocols</h2>
+        <h2 i18n:translate='bespokeActiveProtocols'>Open Protocols</h2>
 
         <p class='discreet' tal:condition='not:onProtocols' i18n:translate='bespokeNoProtocols'>
             I'm not participating in any protocols right now.
@@ -124,7 +107,7 @@
             </tbody>
         </table>
 
-        <h2 i18n:translate='bespokeInactiveProtocols'>My Inactive Protocols</h2>
+        <h2 i18n:translate='bespokeInactiveProtocols'>Closed Protocols</h2>
         <p class='discreet' tal:condition='not:offProtocols' i18n:translate='bespokeNoInactiveProtocols'>
             I don't have any past protocols. Whew!
         </p>
