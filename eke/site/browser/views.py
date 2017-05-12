@@ -9,6 +9,7 @@ EKE Sites: views for content types.
 from Acquisition import aq_inner
 from eke.knowledge.browser.views import KnowledgeFolderView, KnowledgeObjectView
 from eke.site.interfaces import ISite, ISiteFolder, IPerson
+from eke.publications.interfaces import IPublication
 from eke.study.interfaces import IProtocol
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.instance import memoize
@@ -299,3 +300,15 @@ class PersonView(KnowledgeObjectView):
             else:
                 actives.append(protocol)
         return actives, inactives
+    @memoize
+    def publications(self):
+        context = aq_inner(self.context)
+        catalog = plone.api.portal.get_tool('portal_catalog')
+        results = catalog(
+            object_provides=IPublication.__identifier__,
+            siteID=context.siteID
+        )
+        publications = []
+        for i in results:
+            publications.append(i.getObject())
+        return publications

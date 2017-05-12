@@ -13,6 +13,7 @@
         <metal:main fill-slot='main'>
             <tal:main-macro metal:define-macro='main' tal:define='
                 protocols view/protocols;
+                publications view/publications;
                 onProtocols python:protocols[0];
                 offProtocols python:protocols[1];
             '>
@@ -152,7 +153,48 @@
             </tbody>
         </table>
 
-        <p class='discreet'>To update protocols, biomarkers, or science data, please contact the
+        <h2 i18n:translate='bespokeInactivePublications'>Publications</h2>
+        <p class='discreet' tal:condition='not:publications' i18n:translate='bespokeNoInactivePublications'>
+            I don't have any past publications... yet!
+        </p>
+        <table class='listing' tal:condition='publications'>
+            <thead>
+                <tr>
+                    <th i18n:translate='bespokePublicationName'>Publication Name</th>
+                    <th i18n:translate='bespokePublicationPubmedid'>PubMed ID</th>
+                    <th i18n:translate='bespokePublicationJournal'>Journal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tal:repeat repeat='publication publications'>
+                    <tr tal:define='oddRow repeat/publication/odd' class='odd'
+                        tal:attributes='class python:"odd" if oddRow else "even"'>
+                        <td>
+                            <a href='#' title='Super awesome publication.' tal:content='publication/title'
+                                tal:attributes='
+                                href publication/absolute_url;
+                                title publication/abstract;
+                            '>
+                                A Methylation Publication
+                            </a>
+                        </td>
+                        <td style='text-align: right;'>
+                            <span tal:condition='not:publication/pubMedID' ta:omit-tag=''>None</span>
+                            <a href='#' tal:condition='publication/pubMedID' tal:content='publication/pubMedID'
+                                tal:attributes='href publication/pubURL'>
+                                Link to pubmed
+                            </a>
+                        </td>
+                        <td style='text-align: right;'>
+                            <span tal:condition='not:publication/journal' ta:omit-tag=''>None</span>
+                            <span tal:condition='publication/journal' ta:omit-tag='' tal:content='publication/journal'>Nature</span>
+                        </td>
+                    </tr>
+                </tal:repeat>
+            </tbody>
+        </table>
+
+        <p class='discreet'>To update protocols, publications, biomarkers, or science data, please contact the
             <a href='mailto:ic-portal@jpl.nasa.gvo'>Informatics Center</a>.
         </p>
 
