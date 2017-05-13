@@ -13,7 +13,7 @@ from eke.knowledge.browser.rdf import IngestHandler, KnowledgeFolderIngestor, Cr
 from eke.knowledge.browser.utils import MarkupFilterer
 from eke.knowledge.browser.utils import updateObject, getUIDsFromURIs
 from eke.site import ProjectMessageFactory as _
-from eke.site.interfaces import ISite
+from eke.site.interfaces import ISite, IPerson
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
@@ -69,6 +69,7 @@ _siteURI                  = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#site'
 _sponsorPredURI           = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#sponsor')
 _surnamePredicateURI      = URIRef('http://xmlns.com/foaf/0.1/surname')
 _degreePredicateURIPrefix = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#degree')
+_employmentActiveURI      = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#employmentActive')
 
 def _transformMemberType(memberType):
     '''Transform a potentially bad member type from the DMCC into a good, clean member type'''
@@ -237,6 +238,9 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
         statements = self._parseRDF(graph)
         createdPeople = {}
         for uri, predicates in statements.items():
+            persons = catalog(identifier=unicode(uri), object_provides=IPerson.__identifier__)
+            person_list = [p.id for p in persons]
+            employmentStatus = self._getNameComponent(_employmentActiveURI, predicates)
             if _siteURI not in predicates:
                 # Person without a site, ignore him or her.
                 continue
@@ -246,6 +250,14 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
                 # Person with a site, but it's unknown, so again, ignore him or her.
                 continue
             for site in [i.getObject() for i in results]:
+                if employmentStatus == "Former employee":
+                    # Person who is not an current employee anymore
+                    # make sure to delete them if they exist
+                    if len(persons) > 0:
+                        for pid in person_list:
+                            if pid in site.objectIds():
+                                site.manage_delObjects(pid)
+                    continue
                 objectID = self._generatePersonID(predicates, normalizerFunction)
                 if objectID in site.objectIds():
                     site.manage_delObjects(objectID)

@@ -37,6 +37,37 @@ _singlePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
     <_4:shippingAddress>5th Stall Along\n1, Celenceau St\nLipza Beirut 7C\nLEBANON</_4:shippingAddress>
     <_3:img>testscheme://localhost/people/the-strangler.png</_3:img>
     <_4:secureSiteRole>Co-Investigator</_4:secureSiteRole>
+    <_4:employmentActive>Active employee</_4:employmentActive>
+  </rdf:Description>
+</rdf:RDF>'''
+
+_singleFormerPersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:_3="http://xmlns.com/foaf/0.1/"
+   xmlns:_4="http://edrn.nci.nih.gov/rdf/schema.rdf#"
+   xmlns:_5="http://www.w3.org/2001/vcard-rdf/3.0#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/1">
+    <_4:site rdf:resource="http://tongue.com/clinic/3d"/>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_4:salutation>Bootyful</_4:salutation>
+    <_4:degree1>Ph.D.</_4:degree1>
+    <_4:degree2>MPH</_4:degree2>
+    <_4:degree3>Disco Studies</_4:degree3>
+    <_3:surname>Pawaka</_3:surname>
+    <_3:givenname>Makin</_3:givenname>
+    <_3:phone>+61 2 9355 5555</_3:phone>
+    <_3:mbox>mailto:mp69@aol.com</_3:mbox>
+    <_5:fax>+61 2 9355 5556</_5:fax>
+    <_4:specialty>Strangulation</_4:specialty>
+    <_4:edrnTitle>The Strangler</_4:edrnTitle>
+    <_4:mailingAddress>3rd Stall Along\nGrand Central Station\nWashington DC 20011\nUNITED STATES</_4:mailingAddress>
+    <_4:physicalAddress>4th Stall Along\n790 S Marine Corps Dr\nTamuning Guam 96913\nGUAM</_4:physicalAddress>
+    <_4:shippingAddress>5th Stall Along\n1, Celenceau St\nLipza Beirut 7C\nLEBANON</_4:shippingAddress>
+    <_3:img>testscheme://localhost/people/the-strangler.png</_3:img>
+    <_4:secureSiteRole>Co-Investigator</_4:secureSiteRole>
+    <_4:employmentActive>Former employee</_4:employmentActive>
   </rdf:Description>
 </rdf:RDF>'''
 
@@ -53,6 +84,7 @@ _doublePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
     <_3:givenname>Makin</_3:givenname>
     <_3:phone>+61 2 9355 5555</_3:phone>
     <_3:mbox>mailto:mp69@aol.com</_3:mbox>
+    <_4:employmentActive>Current employee</_4:employmentActive>
   </rdf:Description>
   <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/2">
     <_4:site rdf:resource="http://tongue.com/clinic/3d"/>
@@ -72,7 +104,46 @@ _doublePersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
     <_3:givenname>Dirk</_3:givenname>
     <_3:phone>+62 2 9355 5556</_3:phone>
     <_3:mbox>mailto:drs69@aol.com</_3:mbox>
+    <_4:employmentActive>Current employee</_4:employmentActive>
   </rdf:Description>
+</rdf:RDF>'''
+
+_doubleFormerPersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:_3="http://xmlns.com/foaf/0.1/"
+   xmlns:_4="http://edrn.nci.nih.gov/rdf/schema.rdf#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/1">
+    <_4:site rdf:resource="http://tongue.com/clinic/3d"/>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_3:surname>Pawaka</_3:surname>
+    <_3:givenname>Makin</_3:givenname>
+    <_3:phone>+61 2 9355 5555</_3:phone>
+    <_3:mbox>mailto:mp69@aol.com</_3:mbox>
+    <_4:employmentActive>Current employee</_4:employmentActive>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/2">
+    <_4:site rdf:resource="http://tongue.com/clinic/3d"/>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_3:surname>Cusexijilomimi</_3:surname>
+    <_4:middleName>Hotstuff</_4:middleName>
+    <_3:givenname>Crystal</_3:givenname>
+    <_3:phone>+61 2 9355 5556</_3:phone>
+    <_3:mbox>mailto:chc69@aol.com</_3:mbox>
+    <_4:edrnTitle>Hot Stuff</_4:edrnTitle>
+    <_4:specialty>Tossed Salads</_4:specialty>
+    <_4:employmentActive>Former employee</_4:employmentActive>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://pimpmyho.com/data/registered-person/3">
+    <_4:site rdf:resource="http://plain.com/2d"/>
+    <rdf:type rdf:resource="http://edrn.nci.nih.gov/rdf/types.rdf#Person"/>
+    <_3:surname>Alottaspank</_3:surname>
+    <_3:givenname>Dirk</_3:givenname>
+    <_3:phone>+62 2 9355 5556</_3:phone>
+    <_3:mbox>mailto:drs69@aol.com</_3:mbox>
+  </rdf:<_4:employmentActive>Current employee</_4:employmentActive>
+    Description>
 </rdf:RDF>'''
 
 _movedPersonRDF = '''<?xml version="1.0" encoding="UTF-8"?>
@@ -551,6 +622,8 @@ def registerLocalTestData():
     ekeKnowledgeBase.registerTestData('/sites/many', _manySitesRDF)
     ekeKnowledgeBase.registerTestData('/people/a', _singlePersonRDF)
     ekeKnowledgeBase.registerTestData('/people/b', _doublePersonRDF)
+    ekeKnowledgeBase.registerTestData('/people/aformer', _singleFormerPersonRDF)
+    ekeKnowledgeBase.registerTestData('/people/bformer', _doubleFormerPersonRDF)
     ekeKnowledgeBase.registerTestData('/people/moved', _movedPersonRDF)
     ekeKnowledgeBase.registerTestData('/people/many', _manyPeopleRDF)
     ekeKnowledgeBase.registerTestData('/sites/sample', _sampleSiteRDF)
