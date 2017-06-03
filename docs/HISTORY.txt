@@ -6,17 +6,15 @@ changed, what's been fixed, and so forth, follows.  You can find out more
 about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
-
-
-1.1.18  — Show involved protocols
----------------------------------
+1.1.18  — Let's Get Involved!
+-----------------------------
 
 • CA-1539 - Need to include involved investigators in Investigator and Protocol pages
 • CA-1538 - Investigator page: Need to use the Finish Date as the indicator as to what is open and what is closed
 
 
-1.1.17  — Show only active members
-----------------------------------
+1.1.17 — Let's Get Active!
+--------------------------
 
 • CA-1517 - Show only active people on the member directory
 
