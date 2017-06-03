@@ -287,18 +287,26 @@ class PersonView(KnowledgeObjectView):
     def protocols(self):
         context = aq_inner(self.context)
         catalog = plone.api.portal.get_tool('portal_catalog')
-        results = catalog(
+        leadpi_results = catalog(
             object_provides=IProtocol.__identifier__,
             sort_on='sortable_title',
             piUID=context.piUID
         )
+        involved_results = catalog(
+            object_provides=IProtocol.__identifier__,
+            sort_on='sortable_title',
+            involvedInvestigatorUID=context.piUID
+        )
         actives, inactives = [], []
-        for i in results:
+        all_results = leadpi_results + involved_results
+        for i in all_results:
             protocol = i.getObject()
-            if protocol.finishDate:
-                inactives.append(protocol)
-            else:
-                actives.append(protocol)
+            if protocol.involvedInvestigatorUID:
+                if context.piUID in protocol.involvedInvestigatorUID:
+                    if protocol.finishDate:
+                        inactives.append(protocol)
+                    else:
+                        actives.append(protocol)
         return actives, inactives
     @memoize
     def publications(self):
