@@ -16,9 +16,6 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     <index name='piUID' meta_type='FieldIndex'>
         <indexed_attr value='piUID' />
     </index>
-    <index name='principalInvestigator' meta_type='FieldIndex'>
-        <indexed_attr value='principalInvestigator' />
-    </index>
     <index name='investigatorStatus' meta_type='FieldIndex'>
         <indexed_attr value='investigatorStatus' />
     </index>
@@ -36,7 +33,6 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     <column value='memberType'/>
     <column value='siteID' />
     <column value='piUID' />
-    <column value='principalInvestigator' />
     <column value='investigatorStatus' />
     <column value='siteName' />
     <column value='organs' />
