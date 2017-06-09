@@ -65,7 +65,7 @@
         <h2 i18n:translate='bespokeActiveProtocols'>Open Protocols</h2>
 
         <p class='discreet' tal:condition='not:onProtocols' i18n:translate='bespokeNoProtocols'>
-            I'm not participating in any protocols right now.
+            None Available.
         </p>
 
         <table class='listing' tal:condition='onProtocols'>
@@ -110,7 +110,7 @@
 
         <h2 i18n:translate='bespokeInactiveProtocols'>Closed Protocols</h2>
         <p class='discreet' tal:condition='not:offProtocols' i18n:translate='bespokeNoInactiveProtocols'>
-            I don't have any past protocols. Whew!
+            No closed protocols.
         </p>
 
         <table class='listing' tal:condition='offProtocols'>
@@ -155,7 +155,7 @@
 
         <h2 i18n:translate='bespokeInactivePublications'>Publications</h2>
         <p class='discreet' tal:condition='not:publications' i18n:translate='bespokeNoInactivePublications'>
-            I don't have any past publications... yet!
+            No publications found.
         </p>
         <table class='listing' tal:condition='publications'>
             <thead>
