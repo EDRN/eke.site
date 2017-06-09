@@ -608,11 +608,12 @@ Sites Page Clean Up
 ~~~~~~~~~~~~~~~~~~~
 
 CA-666 wants some items (program description, funding start & stop dates, and
-the mysterious "FWA" number) removed.  Are they gone?  Let's check::
+the mysterious "FWA" number) removed.  Are they gone?  Let's check. Some changes
+they want Program Description to be back!::
 
     >>> browser.open(portalURL + '/questionable-sites/platform-one')
     >>> 'Program Description' in browser.contents
-    False
+    True
     >>> 'Funding Start Date' in browser.contents
     False
     >>> 'Funding End Date' in browser.contents
