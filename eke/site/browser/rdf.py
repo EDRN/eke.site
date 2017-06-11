@@ -70,6 +70,7 @@ _sponsorPredURI           = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#spons
 _surnamePredicateURI      = URIRef('http://xmlns.com/foaf/0.1/surname')
 _degreePredicateURIPrefix = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#degree')
 _employmentActiveURI      = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#employmentActive')
+_homePageURI              = URIRef('http://edrn.nci.nih.gov/rdf/schema.rdf#url')
 
 def _transformMemberType(memberType):
     '''Transform a potentially bad member type from the DMCC into a good, clean member type'''
@@ -84,7 +85,15 @@ def _transformMemberType(memberType):
         return u'SPOREs' # CA-697
     else:
         return memberType
-
+def _transformHomePage(url, ds):
+    #when rdf source url does not contain http prefix, homepage url contains rdfsource url
+    ds_prefix = "/".join(ds.split('/')[:-1])+"/"
+    
+    if ds_prefix in url:
+        url = url.replace(ds_prefix,"")
+        if url.startswith("www."):
+            url = "http://"+url
+    return url
 
 class SiteFolderIngestor(KnowledgeFolderIngestor):
     '''Site folder ingestion.'''
@@ -105,6 +114,9 @@ class SiteFolderIngestor(KnowledgeFolderIngestor):
         for uri, predicates in statements.items():
             results = catalog(identifier=unicode(uri), object_provides=ISite.__identifier__)
             objectID = handler.generateID(uri, predicates, normalizerFunction)
+            #check if homepage URL has rdf datasource in it because of missing http prefix
+            if _homePageURI in predicates:
+                predicates[_homePageURI][0] = _transformHomePage(predicates[_homePageURI][0], rdfDataSource)
             if len(results) == 1 or objectID in context.keys():
                 # Existing site. Update it
                 if objectID in context.keys():
