@@ -6,13 +6,17 @@ changed, what's been fixed, and so forth, follows.  You can find out more
 about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
-1.1.18  — Let's Get Involved!
+1.1.19  — Let's Get Involved!
 -----------------------------
 
 • CA-1548 - Specialty not displayed in eke.site 
 • CA-970  - Label "specialty" in eke.site is not capitalized
 • CA-1539 - Need to include involved investigators in Investigator and Protocol pages
 • CA-1538 - Investigator page: Need to use the Finish Date as the indicator as to what is open and what is closed
+
+
+1.1.18  — Ignore this version
+-----------------------------
 
 
 1.1.17 — Let's Get Active!
