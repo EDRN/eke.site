@@ -33,4 +33,13 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         handler='eke.site.upgrades.updateCatalog'
         sortkey='1'
     />
+    <genericsetup:upgradeStep
+        source='5'
+        destination='6'
+        title='Catalog Index (5→6)'
+        description='The EKE Site package updates the catalog when groing from profile 5 to profile 6.'
+        profile='eke.site:default'
+        handler='eke.site.upgrades.updateCatalog'
+        sortkey='1'
+    />
 </configure>

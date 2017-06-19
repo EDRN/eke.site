@@ -30,6 +30,11 @@ RESERVED. U.S. Government Sponsorship acknowledged.
         <extra name='index_type' value='Okapi BM25 Rank'/>
         <extra name='lexicon_id' value='plone_lexicon'/>
     </index>
+    <index name='specialty' meta_type='ZCTextIndex'>
+        <indexed_attr value='specialty' />
+        <extra name='index_type' value='Okapi BM25 Rank'/>
+        <extra name='lexicon_id' value='plone_lexicon'/>
+    </index>
     <column value='memberType'/>
     <column value='siteID' />
     <column value='piUID' />
@@ -37,4 +42,5 @@ RESERVED. U.S. Government Sponsorship acknowledged.
     <column value='siteName' />
     <column value='organs' />
     <column value='proposal' />
+    <column value='specialty' />
 </object>

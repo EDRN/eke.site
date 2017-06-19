@@ -37,6 +37,18 @@
         <div tal:repeat='proposalGroup organGroup/proposalGroups'>
             <tal:define define='proposalName proposalGroup/title; actualSites proposalGroup/sites;'>
                 <h5 tal:condition='proposalName' tal:content='proposalName'>Some stupid proposal</h5>
+                <span tal:condition='python:proposalName and actualSites'>
+                    <span tal:condition='python:actualSites[0]["specialty"]'>
+                         <dl class='collapsible collapsedOnLoad'>
+                             <dt class='collapsibleHeader'>
+                                <h6 tal:content='python:actualSites[0]["specialty"][0:150]+"..."'></h6>
+                             </dt>
+                             <dd class='collapsibleContent'>
+                                <h6 tal:content='python:actualSites[0]["specialty"]'>Program Description</h6>
+                             </dd>
+                         </dl>
+                    </span>
+                </span>
                 <h5 tal:condition='not:proposalName'>(No Proposal)</h5>
                 <table class='listing sitesByType'>
                     <thead>

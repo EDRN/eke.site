@@ -80,7 +80,8 @@ class SiteFolderView(KnowledgeFolderView):
                     description=brain.Description,
                     investigator=piName,
                     piURL=piURL,
-                    url=brain.getURL()
+                    url=brain.getURL(),
+                    specialty=brain.specialty
                 ))
         organs = []
         for organName, proposals in byOrgan.items():
