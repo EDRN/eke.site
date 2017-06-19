@@ -50,6 +50,12 @@
                     </span>
                 </span>
                 <h5 tal:condition='not:proposalName'>(No Proposal)</h5>
+                <dl class='collapsible collapsedOnLoad'>
+                    <dt class='collapsibleHeader'>This proposal seeks to improve upon the management of lung cancer through detection of tumor specific abnormal…</dt>
+                    <dd class='collapsibleContent'>
+                        This proposal seeks to improve upon the management of lung cancer through detection of tumor specific abnormal DNA methylation. Despite highly publicized advances in genomics and proteomics, the promise of non-invasive diagnostics and personalized medicine remains largely unrealized. Recently, comprehensive determination of genetic and epigenetic aberrations has become a major activity in cancer research since it is well understood that these aberrations provide clues to the process of tumorigenesis. The applicants have developed extremely sensitive assays for the detection of hypermethylated DNA sequences. They have also optimized the isolation and processing of circulating cell free DNA from tumors for these sensitive methods. The comprehensive genome wide analysis of molecular changes in cancer completed by The Cancer Genome Atlas (TCGA) has been used to identify many highly frequent cancer specific methylation events in lung cancer that will be combined with an integrated approach to sample processing and preparation and novel sensitive detection strategies to provide utrasensitive detection of tumor specific changes in DNA methylation in blood and sputum samples. With a large population based screening cohort, the Pittsburgh Lung Screening Study, they will develop and characterize the performance of sensitive methods for detecting cancer specific changes in DNA methylation. This molecular detection will compliment CT screening to address the important issue of early detection of lung cancer.
+                    </dd>
+                </dl>
                 <table class='listing sitesByType'>
                     <thead>
                 		<th i18n:translate='siteFolder_investigatorHeading'>Investigator</th>
