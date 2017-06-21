@@ -46,10 +46,6 @@
                             <label for='parent-fieldname-sponsor' i18n:translate='label_sponsor'>Sponsor:</label>
                             <metal:field use-macro='python:context.widget("sponsor", mode="view")'>Hedonismbot</metal:field>
                         </div>
-                        <div tal:condition='context/specialty'>
-                            <label for='parent-fieldname-specialty' i18n:translate='label_sponsor'>Program Description:</label>
-                            <span id='parent-fieldname-specialty' tal:content='structure context/specialty'>Program Description</span>
-                        </div>
                     </div>
                     <div id="site-right-column">
                     <div>

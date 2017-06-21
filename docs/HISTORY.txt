@@ -6,6 +6,12 @@ changed, what's been fixed, and so forth, follows.  You can find out more
 about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
+1.1.20  — We are specialized!
+-----------------------------
+
+• CA-1551 - Display Program Description below proposals in SitesFolder page
+
+
 1.1.19  — Let's Get Involved!
 -----------------------------
 
