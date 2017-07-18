@@ -410,7 +410,7 @@ OK, now let's see if they're grouped::
 
     >>> browser.open(portalURL + '/questionable-sites')
     >>> browser.contents
-    '...Biomarker Developmental...Sites With No Associated Organ...(No Proposal)...Proposal-less and Organ-less...Whatevs...Organ-less...Anal Gland...(No Proposal)...Proposal-less...Another sigh...Another BDL...Sigh...BDL One...BDL Two...Anus...Bite me...Platform One...Rectum...Bite me...Platform One...'
+    '...Biomarker Developmental...Sites With No Associated Organ...Proposal-less and Organ-less...(No Proposal)...Organ-less...Whatevs...Anal Gland...Proposal-less...(No Proposal)...Another BDL...Another sigh...BDL One...BDL Two...Sigh...Anus...Platform One...Bite me...Rectum...Platform One...Bite me...'
 
 There.
 
