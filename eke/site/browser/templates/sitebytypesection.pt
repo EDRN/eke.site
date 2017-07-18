@@ -36,8 +36,6 @@
         </h4>
         <div tal:repeat='proposalGroup organGroup/proposalGroups'>
             <tal:define define='proposalName proposalGroup/title; actualSites proposalGroup/sites;'>
-                <h5 tal:condition='proposalName' tal:content='proposalName'>Some stupid proposal</h5>
-                <h5 tal:condition='not:proposalName'>(No Proposal)</h5>
                 <table class='listing sitesByType'>
                     <thead>
                 		<th i18n:translate='siteFolder_investigatorHeading'>Investigator</th>
@@ -62,6 +60,8 @@
                         </tr>
                     </tbody>
                 </table>
+                <h5 tal:condition='proposalName' tal:content='proposalName'>Some stupid proposal</h5>
+                <h5 tal:condition='not:proposalName'>(No Proposal)</h5>
                 <h6 tal:condition='python:proposalName and actualSites'>Project Summary</h6>
                 <span tal:condition='python:proposalName and actualSites'>
                     <span tal:condition='python:actualSites[0]["specialty"]'>
