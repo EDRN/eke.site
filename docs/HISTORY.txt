@@ -6,8 +6,14 @@ changed, what's been fixed, and so forth, follows.  You can find out more
 about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
-1.1.24  — Proposing changes is bad
-----------------------------------
+1.1.25 — Re-Release
+-------------------
+
+Something went wrong with the last release to PyPI so we're trying again.
+
+
+1.1.24 — Proposing changes is bad
+---------------------------------
 
 • CA-1554 - Move proposal title and abstract beneath table of sites for BDLs
 
