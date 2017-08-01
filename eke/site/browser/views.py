@@ -300,8 +300,13 @@ class PersonView(KnowledgeObjectView):
         )
         actives, inactives = [], []
         all_results = leadpi_results + involved_results
+        existingProtocols = {}
         for i in all_results:
             protocol = i.getObject()
+            if protocol.absolute_url() in existingProtocols:
+                continue
+            else:
+                existingProtocols[protocol.absolute_url()] = 1
             if protocol.involvedInvestigatorUID:
                 if context.piUID in protocol.involvedInvestigatorUID:
                     if protocol.finishDate:
