@@ -208,7 +208,8 @@ class SiteFolderView(KnowledgeFolderView):
                 piURL=piURL,
                 organs=i.organs,
                 proposal=i.proposal,
-                url=i.getURL()
+                url=i.getURL(),
+                specialty=i.specialty
             ))
         return sites
     @memoize
