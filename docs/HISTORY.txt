@@ -20,7 +20,6 @@ at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
 1.1.24  — Proposing changes is bad
 ----------------------------------
->>>>>>> abb4f291ece381daa8674fda5bbf5a64d0ba72d2
 
 • CA-1554 - Move proposal title and abstract beneath table of sites for BDLs
 
