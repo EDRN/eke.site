@@ -10,7 +10,7 @@ import os.path
 # ------------
 
 _name        = 'eke.site'
-_version     = '1.1.26'
+_version     = '1.1.28'
 _description = 'Site and staff information for the EDRN Knowledge Environment'
 _author      = 'Sean Kelly'
 _authorEmail = 'sean.kelly@jpl.nasa.gov'
