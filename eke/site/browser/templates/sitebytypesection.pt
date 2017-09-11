@@ -6,7 +6,8 @@
             <th i18n:translate='siteFolder_organHeading' tal:condition='showOrgans'>Organ</th>
         </thead>
         <tbody>
-            <tr tal:repeat='item sitesInThisSection'>
+            <div tal:repeat='item sitesInThisSection'>
+            <tr>
                 <td tal:define='url item/url; description item/description; title item/title;'>
                     <a href='#' title='A risque site of ill repute.' tal:content='title'
                         tal:attributes='href url; title description;'> 
@@ -25,6 +26,20 @@
                     Anus, Rectum
                 </td>
             </tr>
+            <tr><td colspan=3>
+                <span tal:condition='python:item["specialty"] and len(item["specialty"]) > 20'>
+                     <dl class='collapsible collapsedOnLoad' style='margin: 0 0 1em 0;'>
+                         <dt class='collapsibleHeader' style='margin: .8em 0 0 0;'>
+                            <h6 tal:content='python:item["specialty"][0:150]+"..."'></h6>
+                         </dt>
+                         <dd class='collapsibleContent'>
+                            <h6 tal:content='python:item["specialty"]'>Program Description</h6>
+                         </dd>
+                     </dl>
+                </span>
+            </td>
+            </tr>
+            </div>
         </tbody>
     </table>
 </div>

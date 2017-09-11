@@ -208,7 +208,8 @@ class SiteFolderView(KnowledgeFolderView):
                 piURL=piURL,
                 organs=i.organs,
                 proposal=i.proposal,
-                url=i.getURL()
+                url=i.getURL(),
+                specialty=i.specialty
             ))
         return sites
     @memoize
@@ -300,8 +301,13 @@ class PersonView(KnowledgeObjectView):
         )
         actives, inactives = [], []
         all_results = leadpi_results + involved_results
+        existingProtocols = {}
         for i in all_results:
             protocol = i.getObject()
+            if protocol.absolute_url() in existingProtocols:
+                continue
+            else:
+                existingProtocols[protocol.absolute_url()] = 1
             if protocol.involvedInvestigatorUID:
                 if context.piUID in protocol.involvedInvestigatorUID:
                     if protocol.finishDate:

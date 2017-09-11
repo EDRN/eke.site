@@ -6,14 +6,21 @@ changed, what's been fixed, and so forth, follows.  You can find out more
 about the issue numbers listed below by visiting the project's issue tracker
 at https://oodt.jpl.nasa.gov/jira/browse/CA.
 
-1.1.25 — Re-Release
--------------------
+1.1.32 — Propose to all Sites
+-----------------------------
 
-Something went wrong with the last release to PyPI so we're trying again.
+• CA-1573 - Display all sites with their proposal summaries 
 
 
-1.1.24 — Proposing changes is bad
----------------------------------
+1.1.26  — Nooo Duplicate Protocols
+----------------------------------
+
+• CA-1567 - Duplicate Protocols
+
+
+1.1.24  — Proposing changes is bad
+----------------------------------
+>>>>>>> abb4f291ece381daa8674fda5bbf5a64d0ba72d2
 
 • CA-1554 - Move proposal title and abstract beneath table of sites for BDLs
 
