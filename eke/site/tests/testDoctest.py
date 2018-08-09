@@ -7,7 +7,7 @@ EKE Sites: functional and documentation tests.
 '''
 
 import doctest
-import unittest2 as unittest
+import unittest
 from plone.testing import layered
 from eke.site.testing import EKE_SITE_FUNCTIONAL_TESTING as LAYER
 

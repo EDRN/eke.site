@@ -6,7 +6,7 @@
 EKE Sites: test the setup of this package.
 '''
 
-import unittest2 as unittest
+import unittest
 from eke.site.testing import EKE_SITE_INTEGRATION_TESTING
 from Products.CMFCore.utils import getToolByName
 from zope.component import queryUtility
