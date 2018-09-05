@@ -19,3 +19,6 @@ operated by the California Institute of Technology, for NCI_.
 .. _JPL: http://www.jpl.nasa.gov/
 .. _NCI: http://cancer.gov/
 .. _Plone: http://plone.org/
+
+NOTE: Even though I (Sean Kelly) am the owner of eke.site on PyPI, I cannot
+upload a new version, so Portal 4.6.7 will stick with version 1.1.32.
